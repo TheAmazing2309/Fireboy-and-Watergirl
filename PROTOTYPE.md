@@ -22,3 +22,8 @@ Good to Have Features:
 1. Camera movement and zoom.
 2. Moving blocks that they player can push.
 3. Pulleys that the player can interact with.
+4. Sloped tiles at a 45 degree angle
+5. Robust animations of the player, and elements
+
+![](mainMenu.png)
+![](level1.png)
