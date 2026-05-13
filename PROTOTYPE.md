@@ -38,3 +38,25 @@ The level also contains a counter for the time at the top that ticks every secon
 ![](uml.png)
 
 This our UML diagram. It contains the main Game class which runs a Map class which is an instance of a level. The level is stored as a tilemap in a text file with each different tile represented by a different ASCII character. The abstract Tile class stores the information about the tile. This includes textures. The abstract class has multiple subclasses that primarily override the collide command. A solid tile would repel the player and not allow them to collide, while colliding with a gem or lever interacts with the world. Colliding with a gem would collect it and remove it from the level.
+
+Work on this project will be divided into multiple stages:
+
+#### Stage 1
+1. Have a working tilemap that renders on the screen.
+2. Have a Player that can move with key presses.
+3. Add gravity so that the player falls to the ground.
+
+#### Stage 2
+1. Have working collisions between any Tile and Player.
+2. Add different types of water that can harm their respective player.
+3. Allow gems to be collected.
+4. Create a timer at the top of the screen.
+
+#### Stage 3
+1. Add doors that, when both opened simultaneously, end the level.
+2. Add buttons that allow to be pressed and move platforms.
+3. Add collision between the players and the platforms.
+
+#### Stage 4
+1. Add levers that can be interacted with.
+2. Add blocks that can be pushed around by the players in order to clear longer jumps.
