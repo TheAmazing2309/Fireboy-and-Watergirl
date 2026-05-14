@@ -3,6 +3,7 @@ boolean w,a,d,up,left,right;
 PVector speed = new PVector(1, 0);
 PVector jump = new PVector(0, 3);
 PVector gravity = new PVector(0, 0);
+PVector friction = new PVector(.1, 0);
 PImage[] waterAnimation, fireAnimation;
 void setup(){
   size (1000,700);
@@ -32,6 +33,30 @@ void draw(){
   if (right){
   watergirl.apply(speed);
   }
+  if (fireboy.velocity.x > 2){
+  fireboy.apply(speed.mult(-1));
+  }
+  if (fireboy.velocity.x < -2){
+  fireboy.apply(speed);
+  }
+  if (watergirl.velocity.x > 2){
+  watergirl.apply(speed.mult(-1));
+  }
+  if (watergirl.velocity.x < -2){
+  watergirl.apply(speed);
+  }
+  if (!a && !d && fireboy.velocity.x < 0){
+  fireboy.apply(friction);
+  }
+  if (!a && !d && fireboy.velocity.x > 0){
+  fireboy.apply(friction.mult(-1));
+  }
+  if (!left && !right && watergirl.velocity.x < 0){
+  watergirl.apply(friction);
+  }
+  if (!left && !right && watergirl.velocity.x > 0){
+  watergirl.apply(friction.mult(-1));
+  }
   
   watergirl.apply(gravity);
   fireboy.apply(gravity);
@@ -39,6 +64,8 @@ void draw(){
   fireboy.display();
   watergirl.move();
   fireboy.move();
+  
+  
 }
 //Testing branching!
 
