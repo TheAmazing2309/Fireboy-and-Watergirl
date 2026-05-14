@@ -1,20 +1,21 @@
+import java.util.*;
 public class Map{
   private int tileSize;
   private int levelWidth;
   private int levelHeight;
-  private int scale;
   private Tile[][] tileMap;
   
-  public Map(int lw, int lh, int scale, int level){
-    tileSize = scale * Tile.size;
-    levelWidth = lw;
-    levelHeight = lh;
-    this.scale = scale;
-    tileMap = new Tile[lw][lh];
+  public Map(int level){
     String[] lines = loadStrings("levels/"+level+".txt");
-    for (int i = 0; i < lh; i++){
+    tileSize = scale * Tile.size;
+    levelWidth = lines[0].length();
+    levelHeight = lines.length;
+    System.out.println(levelHeight + "x" + levelWidth);
+    tileMap = new Tile[levelHeight][levelWidth];
+    for (int i = 0; i < levelHeight; i++){
       String line = lines[i];
-      for (int j = 0; j < lw; j++){
+      System.out.println(line + " " + line.length());
+      for (int j = 0; j < levelWidth; j++){
         switch (line.charAt(j)){
           case ' ': tileMap[i][j] = new WallTile(new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize)), null, false); break;
           case '#': tileMap[i][j] = new WallTile(new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize)), new PImage[]{loadImage("sprites/test.png")}, true); break;
