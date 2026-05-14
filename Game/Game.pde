@@ -57,7 +57,6 @@ void draw(){
   if (!left && !right && watergirl.velocity.x > 0){
   watergirl.apply(friction.mult(-1));
   }
-  
   watergirl.apply(gravity);
   fireboy.apply(gravity);
   watergirl.display();
