@@ -12,6 +12,7 @@ void setup(){
 }
 
 void draw(){
+  background(255);
   if (w){
   fireboy.apply(jump);
   }
@@ -59,6 +60,27 @@ void keyPressed(){
   }
   if (keyCode == RIGHT){
     right = true;
+  }
+}
+
+void keyReleased(){
+  if (key == 'w'){
+    w = false;
+  }
+  if (key == 'a'){
+    a = false;
+  }
+  if (key == 'd'){
+    d = false;
+  }
+  if (keyCode == UP){
+    up = false;
+  }
+  if (keyCode == LEFT){
+    left = false;
+  }
+  if (keyCode == RIGHT){
+    right = false;
   }
   
 }
