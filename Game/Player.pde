@@ -13,7 +13,18 @@ public class Player{
  }
  
  public void move(){
+    velocity.add(acceleration);
+    position.add(velocity);
+    acceleration.set(0, 0);
+ }
  
+ public void apply(PVector force){
+   acceleration.add(force);
+ }
+ 
+ public void display(){
+ fill(0);
+ square(position.x,position.y,10);
  }
  
  public void animate(){
