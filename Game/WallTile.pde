@@ -1,9 +1,8 @@
 public class WallTile extends Tile{
 
-  public WallTile (PShape hitbox, boolean collisionOn){
-    super(hitbox, collisionOn);
+  public WallTile (Hitbox hitbox, PImage[] a, boolean collisionOn){
+    super(hitbox, a, collisionOn);
   }
   
-  @Override public void animate(){}
   @Override public boolean collide(Player other){return false;}
 }
