@@ -1,8 +1,10 @@
 public abstract class Tile{
   
   private PShape hitbox;
-  private boolean fire;
   private PImage[] animation;
+  
+  public Tile(){
+  }
   
   public abstract void animate();
   
