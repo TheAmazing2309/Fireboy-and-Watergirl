@@ -10,20 +10,29 @@ public class Hitbox{
   }
   
   public void collide(Hitbox other){
-    collisions = new boolean[]{false, false, false, false};
-    if (this.position.x <= other.position.x + other.size.x){
+    this.collisions = new boolean[]{false, false, false, false};
+    other.collisions = new boolean[]{false, false, false, false};
+    
+    float overlapLeft = other.position.x + other.size.x - this.position.x;
+    float overlapRight = this.position.x + this.size.x - other.position.x;
+    float overlapAbove = other.position.y + other.size.y - this.position.y;
+    float overlapBelow = this.position.y + this.size.y - other.position.y;
+    
+    float smallestOverlap = Math.min(Math.min(overlapLeft, overlapRight), Math.min(overlapAbove, overlapBelow));
+    
+    if (overlapLeft == smallestOverlap){
       this.collisions[LEFT] = true;
       other.collisions[RIGHT] = true;
     }
-    if (this.position.x + this.size.x >= other.position.x){
+    else if (overlapRight == smallestOverlap){
       this.collisions[RIGHT] = true;
       other.collisions[LEFT] = true;
     }
-    if (this.position.y <= other.position.y + other.size.y){
+    else if (overlapAbove == smallestOverlap){
       this.collisions[TOP] = true;
       other.collisions[BOTTOM] = true;
     }
-    if (this.position.y + this.size.y >= other.position.y){
+    else if (overlapBelow == smallestOverlap){
       this.collisions[BOTTOM] = true;
       other.collisions[BOTTOM] = true;
     }
