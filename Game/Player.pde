@@ -3,20 +3,41 @@ public class Player{
  boolean fire;
  PVector position, velocity, acceleration;
  PImage[] animation;
- PVector speed = new PVector(1, 0);
-PVector jump = new PVector(0, 3);
-PVector gravity = new PVector(0, 0);
-PVector friction = new PVector(.1, 0);
- 
- public Player(boolean fire, PVector position, PImage[] animation, boolean[] inputs){
+ PVector jump = new PVector(0, -2);
+ PVector gravity = new PVector(0, .1);
+ PVector friction = new PVector(.1, 0);
+ public Player(boolean fire, PVector position, PImage[] animation){
    this.fire = fire;
    this.position = position;
    this.animation = animation;
    velocity = new PVector(0,0);
    acceleration = new PVector(0,0);
+   //this.inputs = inputs;
  }
  
  public void move(){
+   if (fire){
+     if (inputs[0]){
+     this.apply(jump);
+     }
+     if (inputs[1]){
+     this.position.add(-.6,0);
+     }
+     if (inputs[2]){
+     this.position.add(.6,0);
+     }
+   }else{
+     if (inputs[3]){
+     this.apply(jump);
+     }
+     if (inputs[4]){
+     this.position.add(-.6,0);
+     //System.out.println(inputs[4]);
+     }
+     if (inputs[5]){
+     this.position.add(.6,0);
+     }
+   }
   // if (w){
   //fireboy.apply(jump);
   //}

@@ -1,11 +1,11 @@
 Player watergirl, fireboy;
-boolean w,a,d,up,left,right;
+//boolean w,a,d,up,left,right;
 PImage[] waterAnimation, fireAnimation;
-boolean [] inputs = {w,a,d,up,left,right};
+boolean [] inputs = {false,false,false,false,false,false};
 void setup(){
   size (1000,700);
-  watergirl = new Player(false, new PVector(40,10), waterAnimation, inputs);
-  fireboy = new Player(true, new PVector(10,10), fireAnimation, inputs);
+  watergirl = new Player(false, new PVector(40,10), waterAnimation);
+  fireboy = new Player(true, new PVector(10,10), fireAnimation);
   
 }
 
@@ -16,53 +16,52 @@ void draw(){
   fireboy.display();
   watergirl.move();
   fireboy.move();
-  
 }
 //Testing branching!
 
 void keyPressed(){
   if (key == 'w'){
-    w = true;
+    inputs[0] = true;
   }
   if (key == 'a'){
-    a = true;
+    inputs[1] = true;
   }
   if (key == 'd'){
-    d = true;
+    inputs[2] = true;
   }
   if (keyCode == UP){
-    up = true;
+    inputs[3] = true;
   }
   if (keyCode == LEFT){
-    left = true;
+    inputs[4] = true;
   }
   if (keyCode == RIGHT){
-    right = true;
+    inputs[5] = true;
   }
   if (key == ' '){
     System.out.println("water: " + watergirl.velocity.x + " fire: " + fireboy.velocity.x);
-    System.out.println(w + " " + a + " " + d + " " + left + " " + right + " " + up);
+    System.out.println(inputs[0] + " " + inputs[1] + " " + inputs[2] + " " + inputs[3] + " " + inputs[4] + " " + inputs[5]);
   }
 }
 
 void keyReleased(){
   if (key == 'w'){
-    w = false;
+    inputs[0] = false;
   }
   if (key == 'a'){
-    a = false;
+    inputs[1] = false;
   }
   if (key == 'd'){
-    d = false;
+    inputs[2] = false;
   }
   if (keyCode == UP){
-    up = false;
+    inputs[3] = false;
   }
   if (keyCode == LEFT){
-    left = false;
+    inputs[4] = false;
   }
   if (keyCode == RIGHT){
-    right = false;
+    inputs[5] = false;
   }
   
 }
