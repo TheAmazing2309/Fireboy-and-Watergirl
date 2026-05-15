@@ -1,7 +1,67 @@
 public class Player{
   public Hitbox hitbox;
   
-  public Player(Hitbox h){
-    this.hitbox = h;
-  }
+  PVector jump = new PVector(0, -2);
+  PVector gravity = new PVector(0, .1);
+  PVector friction = new PVector(.1, 0);
+  float speed = 0.6;
+  
+  
+  boolean fire;
+  PVector velocity, acceleration;
+  PImage[] animation;
+
+ 
+  public Player(boolean fire, Hitbox hitbox, PImage[] animation){   
+    this.fire = fire;
+    this.hitbox = hitbox;
+    this.animation = animation;
+    velocity = new PVector(0,0);
+    acceleration = new PVector(0,0);
+ }
+ 
+ public void move(){
+   if (fire){
+     if (inputs[0]){
+     this.apply(jump);
+     }
+     if (inputs[1]){
+     this.hitbox.position.add(-speed,0);
+     }
+     if (inputs[2]){
+     this.hitbox.position.add(speed,0);
+     }
+   }else{
+     if (inputs[3]){
+     this.apply(jump);
+     }
+     if (inputs[4]){
+     this.hitbox.position.add(-speed,0);
+     }
+     if (inputs[5]){
+     this.hitbox.position.add(speed,0);
+     }
+   }
+    acceleration.add(gravity);
+    velocity.add(acceleration);
+    hitbox.position.add(velocity);
+    acceleration.set(0, 0);
+ }
+ 
+ public void apply(PVector force){
+   acceleration.add(force);
+ }
+ 
+ public void display(){
+   fill(0);
+   rect(hitbox.position.x,hitbox.position.y,hitbox.size.x, hitbox.size.y);
+ }
+ 
+ public void animate(){
+   PImage currentimg;
+   for (int i = 0; i < animation.length; i++){
+    currentimg = animation[i];
+    image(currentimg,hitbox.position.x,hitbox.position.y);
+   }
+ }
 }

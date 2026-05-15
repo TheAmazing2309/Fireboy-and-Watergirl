@@ -1,5 +1,4 @@
 public abstract class Tile{
-  
   public Hitbox hitbox;
   public PImage[] animation;
   public int animationState;
