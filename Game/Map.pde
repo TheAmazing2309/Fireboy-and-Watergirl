@@ -3,7 +3,7 @@ public class Map{
   private int tileSize;
   private int levelWidth;
   private int levelHeight;
-  private Tile[][] tileMap;
+  public Tile[][] tileMap;
   
   public Map(int level){
     String[] lines = loadStrings("levels/"+level+".txt");

@@ -6,7 +6,6 @@ public class Player{
   PVector friction = new PVector(.1, 0);
   float speed = 0.6;
   
-  
   boolean fire;
   PVector velocity, acceleration;
   PImage[] animation;
@@ -48,20 +47,17 @@ public class Player{
     acceleration.set(0, 0);
  }
  
- public void apply(PVector force){
+ private void apply(PVector force){
    acceleration.add(force);
  }
  
- public void display(){
+ public void render(){
    fill(0);
    rect(hitbox.position.x,hitbox.position.y,hitbox.size.x, hitbox.size.y);
  }
  
- public void animate(){
-   PImage currentimg;
-   for (int i = 0; i < animation.length; i++){
-    currentimg = animation[i];
-    image(currentimg,hitbox.position.x,hitbox.position.y);
-   }
+ public Tile[] nearestTiles(){
+   Tile a = map.tileMap[][]
  }
+ 
 }
