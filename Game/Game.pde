@@ -1,69 +1,21 @@
 Player watergirl, fireboy;
 boolean w,a,d,up,left,right;
-PVector speed = new PVector(1, 0);
-PVector jump = new PVector(0, 3);
-PVector gravity = new PVector(0, 0);
-PVector friction = new PVector(.1, 0);
 PImage[] waterAnimation, fireAnimation;
+boolean [] inputs = {w,a,d,up,left,right};
 void setup(){
   size (1000,700);
-  watergirl = new Player(false, new PVector(40,10), waterAnimation);
-  fireboy = new Player(true, new PVector(10,10), fireAnimation);
+  watergirl = new Player(false, new PVector(40,10), waterAnimation, inputs);
+  fireboy = new Player(true, new PVector(10,10), fireAnimation, inputs);
   
 }
 
 void draw(){
   background(255);
-  if (w){
-  fireboy.apply(jump);
-  }
-  if (a){
-  fireboy.apply(speed.mult(-1));
-  }
-  if (d){
-  fireboy.apply(speed);
-  }
   
-  if (up){
-  watergirl.apply(jump);
-  }
-  if (left){
-  watergirl.apply(speed.mult(-1));
-  }
-  if (right){
-  watergirl.apply(speed);
-  }
-  if (fireboy.velocity.x > 2){
-  fireboy.apply(speed.mult(-1));
-  }
-  if (fireboy.velocity.x < -2){
-  fireboy.apply(speed);
-  }
-  if (watergirl.velocity.x > 2){
-  watergirl.apply(speed.mult(-1));
-  }
-  if (watergirl.velocity.x < -2){
-  watergirl.apply(speed);
-  }
-  if (!a && !d && fireboy.velocity.x < 0){
-  fireboy.apply(friction);
-  }
-  if (!a && !d && fireboy.velocity.x > 0){
-  fireboy.apply(friction.mult(-1));
-  }
-  if (!left && !right && watergirl.velocity.x < 0){
-  watergirl.apply(friction);
-  }
-  if (!left && !right && watergirl.velocity.x > 0){
-  watergirl.apply(friction.mult(-1));
-  }
-  watergirl.apply(gravity);
-  fireboy.apply(gravity);
   watergirl.display();
   fireboy.display();
   watergirl.move();
   fireboy.move();
-  
   
 }
 //Testing branching!
@@ -86,6 +38,10 @@ void keyPressed(){
   }
   if (keyCode == RIGHT){
     right = true;
+  }
+  if (key == ' '){
+    System.out.println("water: " + watergirl.velocity.x + " fire: " + fireboy.velocity.x);
+    System.out.println(w + " " + a + " " + d + " " + left + " " + right + " " + up);
   }
 }
 
