@@ -1,23 +1,33 @@
+import java.util.*;
+public final int scale = 10;
+public final int TOP = 0;
+public final int BOTTOM = 1;
+public final int LEFT = 2;
+public final int RIGHT = 3;
+
 Player watergirl, fireboy;
-//boolean w,a,d,up,left,right;
 PImage[] waterAnimation, fireAnimation;
 boolean [] inputs = {false,false,false,false,false,false};
+
+Map map;
+
 void setup(){
-  size (1000,700);
-  watergirl = new Player(false, new PVector(40,10), waterAnimation);
-  fireboy = new Player(true, new PVector(10,10), fireAnimation);
-  
+  size(5*16*10, 5*16*10);
+  map = new Map(1);
+  map.render();
+  watergirl = new Player(false, new Hitbox(new PVector(40,10), new PVector(10,10)), waterAnimation);
+  fireboy = new Player(true, new Hitbox(new PVector(10,10), new PVector(10,10)), fireAnimation);
 }
 
 void draw(){
   background(255);
-  
+  map.render();
   watergirl.display();
   fireboy.display();
   watergirl.move();
   fireboy.move();
 }
-//Testing branching!
+
 
 void keyPressed(){
   if (key == 'w'){
