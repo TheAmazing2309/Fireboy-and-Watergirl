@@ -8,10 +8,12 @@ public final int RIGHT = 3;
 Player watergirl, fireboy;
 PImage[] waterAnimation, fireAnimation;
 boolean [] inputs = {false,false,false,false,false,false};
+Timer timer = new Timer();
 
 Map map;
 
 void setup(){
+  textSize(50);
   size(5*16*10, 5*16*10);
   map = new Map(1);
   map.render();
@@ -22,6 +24,7 @@ void setup(){
 void draw(){
   background(255);
   map.render();
+  timer.render();
   watergirl.display();
   fireboy.display();
   watergirl.move();
