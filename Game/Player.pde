@@ -6,6 +6,7 @@ public class Player{
   float speed = 2;
   
   boolean fire;
+  boolean canJump;
   PVector velocity, acceleration;
   PImage[] animation;
 
@@ -16,6 +17,7 @@ public class Player{
     this.animation = animation;
     velocity = new PVector(0,0);
     acceleration = new PVector(0,0);
+    canJump = false;
  }
  
  public void update(){
@@ -30,8 +32,9 @@ public class Player{
      this.hitbox.position.add(speed,0);
      }
    }else{
-     if (inputs[3] && this.hitbox.collisions[Bottom]){
+     if (inputs[3] && canJump){
      this.apply(jump);
+     canJump = false;
      }
      if (inputs[4]){
      this.hitbox.position.add(-speed,0);
@@ -59,6 +62,7 @@ public class Player{
    if (dir == Bottom){
       this.hitbox.position.y = other.hitbox.position.y - this.hitbox.size.y;
       this.velocity = new PVector(0, 0);
+      this.canJump = true;
    }
    if (dir == Top){
      this.hitbox.position.y = other.hitbox.position.y;
