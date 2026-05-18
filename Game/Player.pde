@@ -19,7 +19,7 @@ public class Player{
     acceleration = new PVector(0,0);
  }
  
- public void move(){
+ public void update(){
    if (fire){
      if (inputs[0]){
      this.apply(jump);
@@ -56,8 +56,15 @@ public class Player{
    rect(hitbox.position.x,hitbox.position.y,hitbox.size.x, hitbox.size.y);
  }
  
+ public void adjust(int dir, Tile other){
+   if (dir == BOTTOM){
+      this.hitbox.position.y = other.hitbox.position.y - this.hitbox.size.y;
+   }
+ }
+ 
+ /*
  public Tile[] nearestTiles(){
    Tile a = map.tileMap[][]
  }
- 
+ */
 }

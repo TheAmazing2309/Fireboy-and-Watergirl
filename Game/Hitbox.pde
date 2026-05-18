@@ -9,9 +9,11 @@ public class Hitbox{
     collisions = new boolean[]{false, false, false, false};
   }
   
-  public void collide(Hitbox other){
+  public void collide(Hitbox other){ //<>//
     this.collisions = new boolean[]{false, false, false, false};
     other.collisions = new boolean[]{false, false, false, false};
+    
+    if (this.position.x + this.size.x <= other.position.x || this.position.x >= other.position.x + other.size.x || this.position.y + this.size.y <= other.position.y || this.position.y >= other.position.y + other.size.y) return;
     
     float overlapLeft = other.position.x + other.size.x - this.position.x;
     float overlapRight = this.position.x + this.size.x - other.position.x;

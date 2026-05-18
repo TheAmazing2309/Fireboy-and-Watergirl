@@ -20,12 +20,25 @@ void setup(){
 }
 
 void draw(){
+  
+  watergirl.update();
+  fireboy.update();
+  
+  for (int i = 0; i < map.tileMap.length; i++){
+    for (int j = 0; j < map.tileMap[0].length; j++){
+      if (map.tileMap[i][j].collisionOn) watergirl.hitbox.collide(map.tileMap[i][j].hitbox);
+      if (watergirl.hitbox.collisions[BOTTOM]){
+        System.out.println(i + " " + j);
+        watergirl.adjust(BOTTOM, map.tileMap[i][j]);
+      }
+    }
+  }
+  
   background(255);
   map.render();
-  watergirl.display();
-  fireboy.display();
-  watergirl.move();
-  fireboy.move();
+  watergirl.render();
+  fireboy.render();
+  
 }
 
 
