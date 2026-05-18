@@ -2,12 +2,10 @@ public abstract class Tile{
   public Hitbox hitbox;
   public PImage[] animation;
   public int animationState;
-  public boolean collisionOn;
   public static final int size = 16;
   
-  public Tile(Hitbox hitbox, PImage[] a, boolean collisionOn){
+  public Tile(Hitbox hitbox, PImage[] a){
     this.hitbox = hitbox;
-    this.collisionOn = collisionOn;
     animation = a;
     animationState = 0;
   }

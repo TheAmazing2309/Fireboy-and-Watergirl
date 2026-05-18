@@ -1,9 +1,9 @@
 import java.util.*;
 public final int scale = 10;
-public final int TOP = 0;
-public final int BOTTOM = 1;
-public final int LEFT = 2;
-public final int RIGHT = 3;
+public final int Top = 0;
+public final int Bottom = 1;
+public final int Left = 2;
+public final int Right = 3;
 
 Player watergirl, fireboy;
 PImage[] waterAnimation, fireAnimation;
@@ -15,8 +15,8 @@ void setup(){
   size(5*16*10, 5*16*10);
   map = new Map(1);
   map.render();
-  watergirl = new Player(false, new Hitbox(new PVector(40,10), new PVector(10,10)), waterAnimation);
-  fireboy = new Player(true, new Hitbox(new PVector(10,10), new PVector(10,10)), fireAnimation);
+  watergirl = new Player(false, new Hitbox(new PVector(40,10), new PVector(10,10), true), waterAnimation);
+  fireboy = new Player(true, new Hitbox(new PVector(10,10), new PVector(10,10), true), fireAnimation);
 }
 
 void draw(){
@@ -26,10 +26,13 @@ void draw(){
   
   for (int i = 0; i < map.tileMap.length; i++){
     for (int j = 0; j < map.tileMap[0].length; j++){
-      if (map.tileMap[i][j].collisionOn) watergirl.hitbox.collide(map.tileMap[i][j].hitbox);
-      if (watergirl.hitbox.collisions[BOTTOM]){
-        System.out.println(i + " " + j);
-        watergirl.adjust(BOTTOM, map.tileMap[i][j]);
+      watergirl.hitbox.collide(map.tileMap[i][j].hitbox);
+    //  System.out.println(Arrays.toString(watergirl.hitbox.collisions));
+      for (int d = 0; d <= 3; d++){
+        if (watergirl.hitbox.collisions[d]){
+          System.out.println(i + " " + j);
+          watergirl.adjust(d, map.tileMap[i][j]);
+        }
       }
     }
   }

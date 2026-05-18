@@ -3,8 +3,7 @@ public class Player{
   
   PVector jump = new PVector(0, -2);
   PVector gravity = new PVector(0, .1);
-  PVector friction = new PVector(.1, 0);
-  float speed = 0.6;
+  float speed = 2;
   
   boolean fire;
   PVector velocity, acceleration;
@@ -20,7 +19,7 @@ public class Player{
  }
  
  public void update(){
-   if (fire){
+   if (fire){ //<>//
      if (inputs[0]){
      this.apply(jump);
      }
@@ -31,7 +30,7 @@ public class Player{
      this.hitbox.position.add(speed,0);
      }
    }else{
-     if (inputs[3]){
+     if (inputs[3] && this.hitbox.collisions[Bottom]){
      this.apply(jump);
      }
      if (inputs[4]){
@@ -57,14 +56,29 @@ public class Player{
  }
  
  public void adjust(int dir, Tile other){
-   if (dir == BOTTOM){
+   if (dir == Bottom){
       this.hitbox.position.y = other.hitbox.position.y - this.hitbox.size.y;
+      this.velocity = new PVector(0, 0);
+   }
+   if (dir == Top){
+     this.hitbox.position.y = other.hitbox.position.y;
+   }
+   if (dir == Left){
+     this.hitbox.position.x = other.hitbox.position.x;
+   }
+   if (dir == Right){
+     this.hitbox.position.x = other.hitbox.position.x - this.hitbox.size.x;
    }
  }
  
- /*
- public Tile[] nearestTiles(){
-   Tile a = map.tileMap[][]
- }
- */
+
+ //public ArrayList<Tile> nearestTiles(){
+ //  ArrayList<Tile> out = new ArrayList<>();
+ //  float xCenter = this.hitbox.position.x + this.hitbox.size.x/2;
+ //  float yCenter = this.hitbox.position.y + this.hitbox.size.y/2;
+ //  out.add(map.tileMap[((int)yCenter/Tile.size<][(int)xCenter/Tile.size]);
+   
+ //  return out;
+ //}
+
 }

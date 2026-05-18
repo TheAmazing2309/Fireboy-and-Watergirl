@@ -17,8 +17,8 @@ public class Map{
       System.out.println(line + " " + line.length());
       for (int j = 0; j < levelWidth; j++){
         switch (line.charAt(j)){
-          case ' ': tileMap[i][j] = new WallTile(new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize)), null, false); break;
-          case '#': tileMap[i][j] = new WallTile(new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize)), new PImage[]{loadImage("sprites/test.png")}, true); break;
+          case ' ': tileMap[i][j] = new WallTile(new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), false), null); break;
+          case '#': tileMap[i][j] = new WallTile(new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), true), new PImage[]{loadImage("sprites/test.png")}); break;
           default: throw new IllegalArgumentException("Illegal char in level " + level);
         }
       }
