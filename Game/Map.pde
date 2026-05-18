@@ -10,11 +10,11 @@ public class Map{
     tileSize = scale * Tile.size;
     levelWidth = lines[0].length();
     levelHeight = lines.length;
-    System.out.println(levelHeight + "x" + levelWidth);
+    //System.out.println(levelHeight + "x" + levelWidth);
     tileMap = new Tile[levelHeight][levelWidth];
     for (int i = 0; i < levelHeight; i++){
       String line = lines[i];
-      System.out.println(line + " " + line.length());
+      //System.out.println(line + " " + line.length());
       for (int j = 0; j < levelWidth; j++){
         switch (line.charAt(j)){
           case ' ': tileMap[i][j] = new WallTile(new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), false), null); break;

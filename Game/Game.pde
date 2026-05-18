@@ -16,27 +16,14 @@ void setup(){
   map = new Map(1);
   windowResize(scale*map.tileMap[0].length*Tile.size, scale*map.tileMap.length*Tile.size);
   map.render();
-  watergirl = new Player(false, new Hitbox(new PVector(40,10), new PVector(10,10), true), waterAnimation);
-  fireboy = new Player(true, new Hitbox(new PVector(10,10), new PVector(10,10), true), fireAnimation);
+  watergirl = new Player(false, new Hitbox(new PVector(40,40), new PVector(10,10), true), waterAnimation);
+  fireboy = new Player(true, new Hitbox(new PVector(90,40), new PVector(10,10), true), fireAnimation);
 }
 
 void draw(){
   
   watergirl.applyInputs();
   fireboy.applyInputs();
-  
-  //for (int i = 0; i < map.tileMap.length; i++){
-  //  for (int j = 0; j < map.tileMap[0].length; j++){
-  //    watergirl.hitbox.collide(map.tileMap[i][j].hitbox);
-  //  //  System.out.println(Arrays.toString(watergirl.hitbox.collisions));
-  //    for (int d = 0; d <= 3; d++){
-  //      if (watergirl.hitbox.collisions[d]){
-  //        System.out.println(i + " " + j);
-  //        watergirl.adjust(d, map.tileMap[i][j]);
-  //      }
-  //    }
-  //  }
-  //}
   
   watergirl.applyAdjustments();
   fireboy.applyAdjustments();
