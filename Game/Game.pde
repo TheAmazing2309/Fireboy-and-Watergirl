@@ -1,14 +1,21 @@
 import java.util.*;
 public final int scale = 10;
-public final int TOP = 0;
-public final int BOTTOM = 1;
-public final int LEFT = 2;
-public final int RIGHT = 3;
+public final int Top = 0;
+public final int Bottom = 1;
+public final int Left = 2;
+public final int Right = 3;
+public final int TITLE = 0;
+public final int PLAY = 1;
+public final int PAUSE = 2;
+public final int WIN = 3;
+public final int LOSE = 4;
+public int gameState = 0;
 
 Player watergirl, fireboy;
 PImage[] waterAnimation, fireAnimation;
 boolean [] inputs = {false,false,false,false,false,false};
 Timer timer = new Timer();
+UI ui = new UI();
 
 Map map;
 
@@ -22,13 +29,15 @@ void setup(){
 }
 
 void draw(){
-  background(255);
-  map.render();
-  timer.render();
-  watergirl.display();
-  fireboy.display();
-  watergirl.move();
-  fireboy.move();
+  ui.display(gameState); 
+  
+  //background(255);
+  //map.render();
+  //timer.render();
+  //watergirl.display();
+  //fireboy.display();
+  //watergirl.move();
+  //fireboy.move();
 }
 
 
@@ -54,6 +63,10 @@ void keyPressed(){
   if (key == ' '){
     System.out.println("water: " + watergirl.velocity.x + " fire: " + fireboy.velocity.x);
     System.out.println(inputs[0] + " " + inputs[1] + " " + inputs[2] + " " + inputs[3] + " " + inputs[4] + " " + inputs[5]);
+  }
+  if (key == 'l'){
+  gameState++;
+  gameState %= 5;
   }
 }
 
