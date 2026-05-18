@@ -18,4 +18,8 @@ public abstract class Tile{
   }
   
   public abstract boolean collide(Player other);
+  
+  @Override public String toString(){
+    return (this.hitbox.position.y/(size*scale)) + " " + (this.hitbox.position.x/(size*scale));
+  }
 }

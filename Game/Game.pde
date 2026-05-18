@@ -21,27 +21,30 @@ void setup(){
 
 void draw(){
   
-  watergirl.update();
-  fireboy.update();
+  watergirl.applyInputs();
+  fireboy.applyInputs();
   
-  for (int i = 0; i < map.tileMap.length; i++){
-    for (int j = 0; j < map.tileMap[0].length; j++){
-      watergirl.hitbox.collide(map.tileMap[i][j].hitbox);
-    //  System.out.println(Arrays.toString(watergirl.hitbox.collisions));
-      for (int d = 0; d <= 3; d++){
-        if (watergirl.hitbox.collisions[d]){
-          System.out.println(i + " " + j);
-          watergirl.adjust(d, map.tileMap[i][j]);
-        }
-      }
-    }
-  }
+  //for (int i = 0; i < map.tileMap.length; i++){
+  //  for (int j = 0; j < map.tileMap[0].length; j++){
+  //    watergirl.hitbox.collide(map.tileMap[i][j].hitbox);
+  //  //  System.out.println(Arrays.toString(watergirl.hitbox.collisions));
+  //    for (int d = 0; d <= 3; d++){
+  //      if (watergirl.hitbox.collisions[d]){
+  //        System.out.println(i + " " + j);
+  //        watergirl.adjust(d, map.tileMap[i][j]);
+  //      }
+  //    }
+  //  }
+  //}
+  
+  watergirl.applyAdjustments();
+  fireboy.applyAdjustments();
+  
   
   background(255);
   map.render();
   watergirl.render();
   fireboy.render();
-  
 }
 
 
