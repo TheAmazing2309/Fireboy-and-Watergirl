@@ -13,10 +13,10 @@ public class Hitbox{
   
   public void collide(Hitbox other){ //<>//
     //System.out.println(this.collisionsOn + " " + other.collisionsOn);
-    if (!collisionsOn || !other.collisionsOn) return;
+    
     this.collisions = new boolean[]{false, false, false, false};
     other.collisions = new boolean[]{false, false, false, false};
-    
+    if (!collisionsOn || !other.collisionsOn) return;
     if (this.position.x + this.size.x <= other.position.x || this.position.x >= other.position.x + other.size.x || this.position.y + this.size.y <= other.position.y || this.position.y >= other.position.y + other.size.y) return;
     
     float overlapLeft = other.position.x + other.size.x - this.position.x;
