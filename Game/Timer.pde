@@ -5,12 +5,12 @@ public class Timer{
     start = System.nanoTime();
   }
   
-  public long getTime(){
-    return System.nanoTime() - start;
+  public float getTime(){
+    return (System.nanoTime() - start)/1000000000.0;
   }
   
   public void render(){
-    
+    text(getTime(),width/2, 50);
   }
   
 }
