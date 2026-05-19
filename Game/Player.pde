@@ -21,7 +21,7 @@ public class Player{
  }
  
  public void applyInputs(){
-   if (fire){ //<>// //<>//
+   if (!fire){ //<>// //<>//
      if (inputs[0] && canJump && velocity.y == 0){
      this.apply(jump);
      canJump = false;
@@ -55,8 +55,13 @@ public class Player{
  }
  
  public void render(){
-   fill(0);
+   if (fire){
+     fill(#FF0000);
+   }else{
+     fill(#0000FF);
+   }
    rect(hitbox.position.x,hitbox.position.y,hitbox.size.x, hitbox.size.y);
+   fill(0);
  }
  
  private void adjust(int dir, Tile other){

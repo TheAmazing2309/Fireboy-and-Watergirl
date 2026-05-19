@@ -11,6 +11,7 @@ public final int WIN = 3;
 public final int LOSE = 4;
 public int gameState = 0;
 public ArrayList<Button> buttonList= new ArrayList<Button>();
+public ArrayList<DoorTile> doorList= new ArrayList<DoorTile>();
 Player watergirl, fireboy;
 PImage[] waterAnimation, fireAnimation;
 boolean [] inputs = {false,false,false,false,false,false};
@@ -20,7 +21,7 @@ UI ui = new UI();
 Map map;
 
 void setup(){
-  pixelDensity(1);
+  //pixelDensity(1);
   textSize(50);
   size(1, 1);
   map = new Map(1);
@@ -28,7 +29,7 @@ void setup(){
   map.render();
   watergirl = new Player(false, new Hitbox(new PVector(40,100), new PVector(10,10), true), waterAnimation);
   fireboy = new Player(true, new Hitbox(new PVector(80,100), new PVector(10,10), true), fireAnimation);
-  buttonList.add(new Button(50,50,200,200));
+  buttonList.add(new Button(50,50,200,200,color(#00FF00)));
 }
 
 void draw(){
@@ -37,7 +38,7 @@ void draw(){
       if (gameState == TITLE){
     //image();
     for (int i = 0; i < buttonList.size(); i++){
-    buttonList.get(i).render("test");
+    buttonList.get(i).render("Play");
     }
     }else if (gameState == PLAY){
       background(255);
