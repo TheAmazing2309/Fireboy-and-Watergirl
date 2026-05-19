@@ -4,13 +4,10 @@ This document must be updated daily every time you finish a work session.
 
 ## Charles
 
-### 2026-05-02 - Brief description
-Expanded description including how much time was spent on task.
+### 2026-05-14 - Player class
+I made a player class and added moevment machanics and set them to keybinds. I also seached for sprites to use in the game, but i could not find original sprites and just used so place holders for now. 2 hours
 
-### 2026-05-02 - Brief description
-Expanded description including how much time was spent on task.
-
-### 2026-05-16 - Timer class
+### 2026-05-15 - Timer class
 I started a Timer class to keep track of time so that it can be used to score how the players did. 
 
 ### 2026-05-17 - Door Class
