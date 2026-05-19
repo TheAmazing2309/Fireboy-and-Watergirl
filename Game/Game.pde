@@ -31,7 +31,10 @@ void setup(){
 
 void draw(){
   //ui.display(gameState); 
-  if (gameState == PLAY){
+  
+      if (gameState == TITLE){
+    //image();
+    }else if (gameState == PLAY){
       background(255);
       map.render();
       timer.render();
@@ -41,8 +44,13 @@ void draw(){
       fireboy.applyInputs();
       watergirl.applyAdjustments();
       fireboy.applyAdjustments();
+    }else if (gameState == PAUSE){
+    //image();
     }else if (gameState == WIN){
-      System.out.println("win");
+    //image();
+    System.out.println("win");
+    }else if (gameState == LOSE){
+    //image();
     }
 }
 
