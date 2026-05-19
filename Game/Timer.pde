@@ -10,7 +10,16 @@ public class Timer{
   }
   
   public void render(){
-    text((int) getTime()/60 + " : " + (int)getTime() % 60,width/2, 50);
+    String text = "";
+    if ((int) getTime()/60 < 10){
+      text += "0";
+    }
+    if ((int)getTime() % 60 < 10){
+    text(text + (int) getTime()/60 + " : " + "0" + (int)getTime() % 60,width/2 - 70, 50);
+    }else{
+    text(text + (int) getTime()/60 + " : " + (int)getTime() % 60,width/2 - 70, 50);
+    }
+    
   }
   
 }
