@@ -1,5 +1,5 @@
 import java.util.*;
-public final int scale = 10;
+public final int scale = 2;
 public final int Top = 0;
 public final int Bottom = 1;
 public final int Left = 2;
@@ -21,23 +21,29 @@ Map map;
 
 void setup(){
   textSize(50);
-  size(5*16*10, 5*16*10);
+  size(1, 1);
   map = new Map(1);
+  windowResize(scale*map.tileMap[0].length*Tile.size, scale*map.tileMap.length*Tile.size);
   map.render();
-  watergirl = new Player(false, new Hitbox(new PVector(40,10), new PVector(10,10)), waterAnimation);
-  fireboy = new Player(true, new Hitbox(new PVector(10,10), new PVector(10,10)), fireAnimation);
+  watergirl = new Player(false, new Hitbox(new PVector(40,100), new PVector(10,10), true), waterAnimation);
+  fireboy = new Player(true, new Hitbox(new PVector(80,100), new PVector(10,10), true), fireAnimation);
 }
 
 void draw(){
-  ui.display(gameState); 
-  
-  //background(255);
-  //map.render();
-  //timer.render();
-  //watergirl.display();
-  //fireboy.display();
-  //watergirl.move();
-  //fireboy.move();
+  //ui.display(gameState); 
+  if (gameState == PLAY){
+      background(255);
+      map.render();
+      timer.render();
+      watergirl.render();
+      fireboy.render();
+      watergirl.applyInputs();
+      fireboy.applyInputs();
+      watergirl.applyAdjustments();
+      fireboy.applyAdjustments();
+    }else if (gameState == WIN){
+      System.out.println("win");
+    }
 }
 
 

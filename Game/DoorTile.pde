@@ -1,10 +1,14 @@
 public class DoorTile extends Tile{
-  int compleated = 0;
-  Hitbox hitbox;
+  public boolean opened = false;
+  public boolean fire;
+
   
-  public DoorTile(Hitbox hitbox, PImage[] a){
+  public DoorTile(Hitbox hitbox, PImage[] a, boolean fire){
     super(hitbox,a);
+    this.fire = fire;
   }
   
-  @Override public boolean collide(Player other){return false;}
+  //public void update(){
+  //  if (this.hitboc
+  //}
 }
