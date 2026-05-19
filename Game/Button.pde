@@ -9,7 +9,9 @@ public class Button{
    }
    
    public void render(String text){
+     rectMode(CORNERS);
      if (mouseX > x1 && mouseX < x2 && mouseY > y1 && mouseY < y2){
+       System.out.println(mouseX + "  " + mouseY);
        fill(180);
      }else{
      fill(100);

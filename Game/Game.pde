@@ -20,6 +20,7 @@ UI ui = new UI();
 Map map;
 
 void setup(){
+  pixelDensity(1);
   textSize(50);
   size(1, 1);
   map = new Map(1);
@@ -27,7 +28,7 @@ void setup(){
   map.render();
   watergirl = new Player(false, new Hitbox(new PVector(40,100), new PVector(10,10), true), waterAnimation);
   fireboy = new Player(true, new Hitbox(new PVector(80,100), new PVector(10,10), true), fireAnimation);
-  buttonList.add(new Button(50,50,100,60));
+  buttonList.add(new Button(50,50,500,500));
 }
 
 void draw(){
