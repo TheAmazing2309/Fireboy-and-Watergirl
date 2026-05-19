@@ -50,6 +50,15 @@ void draw(){
       fireboy.applyInputs();
       watergirl.applyAdjustments();
       fireboy.applyAdjustments();
+      int i = 0;
+      //while(doorList.get(i).opened == true){
+      //  i++;
+      //  if(i == 2){
+      //  gameState = 3;
+      //  break;
+      //  }
+      //}
+      
     }else if (gameState == PAUSE){
     //image();
     }else if (gameState == WIN){
