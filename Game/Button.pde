@@ -15,6 +15,8 @@ public class Button{
      fill(100);
      }
      rect(x1,y1,x2,y2);
+     fill(255);
+     text(text,x1,(y1+y2)/2 + 50);
    }
    
    public void clicked(){
