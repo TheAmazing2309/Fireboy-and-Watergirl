@@ -10,7 +10,7 @@ public class Timer{
   }
   
   public void render(){
-    text(getTime(),width/2, 50);
+    text((int) getTime()/60 + " : " + (int)getTime() % 60,width/2, 50);
   }
   
 }
