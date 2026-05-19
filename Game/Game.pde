@@ -28,7 +28,7 @@ void setup(){
   map.render();
   watergirl = new Player(false, new Hitbox(new PVector(40,100), new PVector(10,10), true), waterAnimation);
   fireboy = new Player(true, new Hitbox(new PVector(80,100), new PVector(10,10), true), fireAnimation);
-  buttonList.add(new Button(50,50,500,500));
+  buttonList.add(new Button(50,50,200,200));
 }
 
 void draw(){
@@ -109,4 +109,10 @@ void keyReleased(){
     inputs[5] = false;
   }
   
+}
+
+void mouseClicked(){
+    for (int i = 0; i < buttonList.size(); i++){
+      buttonList.get(i).clicked();
+    }
 }
