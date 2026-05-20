@@ -46,4 +46,10 @@ public class SlidingTile extends Tile{
     }
     return false;
   }
+  
+  @Override public void render(){
+    println("THIS SHOULD NOT BE IN THE FINAL PRODUCT!!");
+    fill(0);
+    rect(hitbox.position.x,hitbox.position.y,hitbox.size.x, hitbox.size.y);
+  }
 }

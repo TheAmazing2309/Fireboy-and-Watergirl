@@ -18,7 +18,7 @@ public class ButtonTile extends Tile{
   }
   
   @Override public void render(){
-   fill(100 * code);
+   fill(0);
    rect(hitbox.position.x,hitbox.position.y,hitbox.size.x, hitbox.size.y);
   }
   

@@ -28,19 +28,19 @@ public class Map{
         }
         else if ((el >= 'a' && el <= 'j') || (el >= 'A' && el <= 'J') || (el >= 'k' && el <= 't') || (el >= 'K' && el <= 'T')){ 
           Tile temp;
-          if (el >= 'a' && el <= 'j') {
+          if (el >= 'a' && el <= 'j') {//Left
             temp = new SlidingTile(new Hitbox(new PVector(j * tileSize, i*tileSize+tileSize*((i>0&&lines[i-1].charAt(j)==' ')?0:1-slidingTileThickness)), new PVector(tileSize, tileSize * slidingTileThickness), true), null, Left);
             el -= 'a';
           }
-          else if (el >= 'A' && el <= 'J'){ 
+          else if (el >= 'A' && el <= 'J'){ //Right
             temp = new SlidingTile(new Hitbox(new PVector(j * tileSize, i*tileSize+tileSize*((i>0&&lines[i-1].charAt(j)==' ')?0:1-slidingTileThickness)), new PVector(tileSize, tileSize * slidingTileThickness), true), null, Right);
             el -= 'A';
           }
-          else if (el >= 'k' && el <= 't'){
+          else if (el >= 'k' && el <= 't'){ //Top
             temp = new SlidingTile(new Hitbox(new PVector(j * tileSize+tileSize*((j>0&&lines[i].charAt(j)==' ')?0:1-slidingTileThickness), i * tileSize), new PVector(tileSize * slidingTileThickness, tileSize), true), null, Top);
             el -= 'k';
           }
-          else {
+          else { //Bottom
             temp = new SlidingTile(new Hitbox(new PVector(j * tileSize+tileSize*((j>0&&lines[i].charAt(j)==' ')?0:1-slidingTileThickness), i * tileSize), new PVector(tileSize * slidingTileThickness, tileSize), true), null, Bottom);
             el -= 'K';
           }
@@ -50,8 +50,12 @@ public class Map{
         else throw new IllegalArgumentException("Illegal char in level " + level);
         }
       }
+      println(Arrays.toString(slidingTileTemp));
+      println(Arrays.toString(buttons));
       for (int i = 0; i < 10; i++){
-        if (slidingTileTemp[i] != null && buttons[i] != null){
+        if (buttons[i] != null){
+          System.out.println("HEllo");
+          println(Arrays.toString(slidingTileTemp));
           buttons[i].setTileLink(slidingTileTemp[i]);
         }
       }
@@ -62,6 +66,19 @@ public class Map{
       for (int j = 0; j < levelWidth; j++){
         tileMap[i][j].render();
       }
+    }
+  }
+  
+  public void updateSlidingTiles(){
+    for (int i = 0; i < buttons.length; i++){
+      if (buttons[i] == null || buttons[i].tileLink == null) continue;
+      fireboy.hitbox.collide(buttons[i].tileLink.hitbox);
+      if (fireboy.hitbox.collisions[Bottom]) buttons[i].activate();
+      else buttons[i].deactivate();
+      
+      watergirl.hitbox.collide(buttons[i].tileLink.hitbox);
+      if (watergirl.hitbox.collisions[Bottom]) buttons[i].activate();
+      else buttons[i].deactivate();
     }
   }
 }

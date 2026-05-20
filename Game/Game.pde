@@ -46,6 +46,7 @@ void draw(){
       fireboy.applyInputs();
       watergirl.applyAdjustments();
       fireboy.applyAdjustments();
+      map.updateSlidingTiles();
       map.render();
       timer.render();
       watergirl.render();
