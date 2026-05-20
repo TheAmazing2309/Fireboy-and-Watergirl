@@ -8,7 +8,7 @@ public class Map{
 
   public Map(int level){
     String[] lines = loadStrings("levels/"+level+".txt");
-    tileSize = scale * Tile.size;
+    tileSize = (int)(scale * Tile.size);
     levelWidth = lines[0].length();
     levelHeight = lines.length;
     buttons = new ButtonTile[10];
@@ -69,16 +69,31 @@ public class Map{
     }
   }
   
+  public void resetButtons(){
+    for (ButtonTile b : buttons){
+      if (b != null) b.openThisFrame = false;
+    }
+  }
+  
+  public void applyButtons(){
+    for (ButtonTile b : buttons){
+      if (b != null && !b.openThisFrame && b.tileLink != null) b.deactivate();
+    }
+  }
+  /*
   public void updateSlidingTiles(){
     for (int i = 0; i < buttons.length; i++){
       if (buttons[i] == null || buttons[i].tileLink == null) continue;
       fireboy.hitbox.collide(buttons[i].tileLink.hitbox);
+      println(Arrays.toString(fireboy.hitbox.collisions));
       if (fireboy.hitbox.collisions[Bottom]) buttons[i].activate();
       else buttons[i].deactivate();
       
       watergirl.hitbox.collide(buttons[i].tileLink.hitbox);
+      println(Arrays.toString(watergirl.hitbox.collisions));
       if (watergirl.hitbox.collisions[Bottom]) buttons[i].activate();
       else buttons[i].deactivate();
     }
   }
+  */
 }

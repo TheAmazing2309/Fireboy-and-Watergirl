@@ -69,6 +69,10 @@ public class Player{
       this.hitbox.position.y = other.hitbox.position.y - this.hitbox.size.y;
       this.velocity = new PVector(0, 0);
       this.canJump = true;
+      if (other instanceof ButtonTile && !((ButtonTile)other).openThisFrame){
+        ((ButtonTile)other).activate();
+        ((ButtonTile)other).openThisFrame = true;
+      }
    }
    if (dir == Top){
      this.hitbox.position.y = other.hitbox.position.y + other.hitbox.size.y + 1;
