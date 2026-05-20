@@ -35,6 +35,7 @@ void setup(){
 void draw(){
     if (gameState == TITLE){
       for (int i = 0; i < buttonList.size(); i++){
+        background(255);
         buttonList.get(i).render("Play");
       }
     }else if (gameState == PLAY){
@@ -61,7 +62,7 @@ void draw(){
     //image();
     }else if (gameState == WIN){
     //image();
-    System.out.println("win");
+    //System.out.println("win");
     }else if (gameState == LOSE){
     //image();
     }

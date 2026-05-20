@@ -26,6 +26,7 @@ public class Button{
    public void clicked(){
      if (mouseX > x1 && mouseX < x2 && mouseY > y1 && mouseY < y2){
        if(this.equals(buttonList.get(0))){
+         timer.pause = System.nanoTime();
          gameState++;
        }
      }

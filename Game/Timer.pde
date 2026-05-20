@@ -1,17 +1,25 @@
 public class Timer{
   long start;
-  long pausedTime;
-  float time;
+  long pausedTime = 0;
+  float time = 0;
+  public long pause;
   
   public Timer(){
     start = System.nanoTime();
   }
   
   public void getTime(){
-    time = (System.nanoTime() - start)/1000000000.0;
+    time += (System.nanoTime() - pause)/1000000000.0;
+    //if (gameState == PLAY){
+    ////  pausedTime += System.nanoTime() - pause;
+    //  System.out.println(time);
+    //}
+    pause = System.nanoTime();
   }
   
   public void render(){
+    getTime();
+    fill(0);
     String text = "";
     if ((int) time/60 < 10){
       text += "0";
