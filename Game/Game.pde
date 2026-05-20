@@ -33,24 +33,22 @@ void setup(){
 }
 
 void draw(){
-  //ui.display(gameState); 
-  
-      if (gameState == TITLE){
-    //image();
-    for (int i = 0; i < buttonList.size(); i++){
-    buttonList.get(i).render("Play");
-    }
+    if (gameState == TITLE){
+      for (int i = 0; i < buttonList.size(); i++){
+        buttonList.get(i).render("Play");
+      }
     }else if (gameState == PLAY){
       background(255);
-      map.render();
-      timer.render();
-      watergirl.render();
-      fireboy.render();
       watergirl.applyInputs();
       fireboy.applyInputs();
       watergirl.applyAdjustments();
       fireboy.applyAdjustments();
-      int i = 0;
+      map.render();
+      timer.render();
+      watergirl.render();
+      fireboy.render();
+
+      //int i = 0;
       //while(doorList.get(i).opened == true){
       //  i++;
       //  if(i == 2){
