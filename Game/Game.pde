@@ -29,13 +29,14 @@ void setup(){
   map.render();
   watergirl = new Player(false, new Hitbox(new PVector(40,100), new PVector(10,10), true), waterAnimation);
   fireboy = new Player(true, new Hitbox(new PVector(80,100), new PVector(10,10), true), fireAnimation);
-  buttonList.add(new Button(50,50,200,200,color(#00FF00)));
+  buttonList.add(new Button(400,200,500,240,color(#00FF00)));
 }
 
 void draw(){
     if (gameState == TITLE){
-      for (int i = 0; i < buttonList.size(); i++){
         background(255);
+        image(loadImage("sprites/fireboyWallpaper2.jpg"),0,0,width,height);
+      for (int i = 0; i < buttonList.size(); i++){
         buttonList.get(i).render("Play");
       }
     }else if (gameState == PLAY){
