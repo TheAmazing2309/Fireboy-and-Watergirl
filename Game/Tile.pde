@@ -17,7 +17,6 @@ public abstract class Tile{
     animationState%=animation.length;
   }
   
-  
   @Override public String toString(){
     return (this.hitbox.position.y/(size*scale)) + " " + (this.hitbox.position.x/(size*scale));
   }

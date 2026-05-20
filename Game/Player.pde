@@ -1,10 +1,10 @@
 public class Player{
   public Hitbox hitbox;
   
-  PVector jump = new PVector(0, -3);
-  PVector gravity = new PVector(0, .1);
+  PVector jump = new PVector(0, -8);
+  PVector gravity = new PVector(0, .5);
   float speed = 2;
-  
+  public final float activationDistance = 100;
   boolean fire;
   boolean canJump;
   PVector velocity, acceleration;
@@ -20,8 +20,8 @@ public class Player{
     canJump = false;
  }
  
- public void applyInputs(){
-   if (fire){ //<>// //<>// //<>//
+ public void applyInputs(){ //<>//
+   if (!fire){ //<>//
      if (inputs[0] && canJump && velocity.y == 0){
      this.apply(jump);
      canJump = false;
@@ -55,8 +55,13 @@ public class Player{
  }
  
  public void render(){
-   fill(0);
+   if (fire){
+     fill(#FF0000);
+   }else{
+     fill(#0000FF);
+   }
    rect(hitbox.position.x,hitbox.position.y,hitbox.size.x, hitbox.size.y);
+   fill(0);
  }
  
  private void adjust(int dir, Tile other){
@@ -71,7 +76,6 @@ public class Player{
    }
    if (dir == Left){
      this.hitbox.position.x = other.hitbox.position.x + other.hitbox.size.x;
-  //   println(this.hitbox.position.x);
    }
    if (dir == Right){
      this.hitbox.position.x = other.hitbox.position.x - this.hitbox.size.x - 1;
@@ -97,23 +101,11 @@ public class Player{
      }
    }
  }
-
- //private ArrayList<Tile> nearestTiles(){
- //  ArrayList<Tile> out = new ArrayList<>();
-   
- //  int xCloseEdge = Math.min((int)(this.hitbox.position.x)/(Tile.size*scale), map.tileMap[0].length - 1);
- //  int yCloseEdge = Math.min((int)(this.hitbox.position.y)/(Tile.size*scale), map.tileMap.length - 1);
- //  int yFarEdge = Math.min((int)(this.hitbox.position.y+this.hitbox.size.y)/(Tile.size*scale), map.tileMap.length - 1);
- //  int xFarEdge = Math.min((int)(this.hitbox.position.x+this.hitbox.size.x)/(Tile.size*scale), map.tileMap[0].length - 1);
-   
- //  out.add(map.tileMap[yCloseEdge][xCloseEdge]);
- //  if (yFarEdge != yCloseEdge) out.add(map.tileMap[yFarEdge][xCloseEdge]);
- //  if (xFarEdge != xCloseEdge) out.add(map.tileMap[yCloseEdge][xFarEdge]);
- //  if (yFarEdge != yCloseEdge && xFarEdge != xCloseEdge) out.add(map.tileMap[yFarEdge][xFarEdge]);
-   
- //  //System.out.println(xCloseEdge + " " + xFarEdge + " " + yCloseEdge + " " + yFarEdge);
-   
- //  return out;
- //}
+ 
+ public void checkDoor(DoorTile a){
+   if (Math.pow(this.hitbox.position.x - a.hitbox.position.x, 2) + Math.pow(this.hitbox.position.y - a.hitbox.position.y, 2) <= activationDistance){
+   a.opened = true;
+   }
+ }
 
 }
