@@ -1,25 +1,26 @@
 public class Timer{
   long start;
+  long pausedTime;
+  float time;
   
   public Timer(){
     start = System.nanoTime();
   }
   
-  public float getTime(){
-    return (System.nanoTime() - start)/1000000000.0;
+  public void getTime(){
+    time = (System.nanoTime() - start)/1000000000.0;
   }
   
   public void render(){
     String text = "";
-    if ((int) getTime()/60 < 10){
+    if ((int) time/60 < 10){
       text += "0";
     }
-    if ((int)getTime() % 60 < 10){
-    text(text + (int) getTime()/60 + " : " + "0" + (int)getTime() % 60,width/2 - 70, 50);
+    if ((int)time % 60 < 10){
+    text(text + (int) time/60 + " : " + "0" + (int)time % 60,width/2 - 70, 50);
     }else{
-    text(text + (int) getTime()/60 + " : " + (int)getTime() % 60,width/2 - 70, 50);
+    text(text + (int) time/60 + " : " + (int)time % 60,width/2 - 70, 50);
     }
-    
   }
   
 }
