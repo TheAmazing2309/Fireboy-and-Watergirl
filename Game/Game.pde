@@ -9,6 +9,9 @@ public final int PLAY = 1;
 public final int PAUSE = 2;
 public final int WIN = 3;
 public final int LOSE = 4;
+public final float slidingTileThickness = 0.2;
+
+
 public int gameState = 0;
 public ArrayList<Button> buttonList= new ArrayList<Button>();
 public ArrayList<DoorTile> doorList= new ArrayList<DoorTile>();

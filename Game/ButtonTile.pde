@@ -1,13 +1,20 @@
 public class ButtonTile extends Tile{
-  int code;
+  SlidingTile tileLink;
   
-  public ButtonTile (Hitbox hitbox, PImage[] a, int code){
+  public ButtonTile (Hitbox hitbox, PImage[] a, SlidingTile tileLink){
     super(hitbox, a);
-    this.code = code;
+    this.tileLink = tileLink;
   }
   
   public void activate(){
-    map.activations.add(code);
+    tileLink.otkroy();
+  }
+  public void deactivate(){
+    tileLink.zakroy();
+  }
+  
+  public void setTileLink(SlidingTile tileLink){
+    this.tileLink = tileLink;
   }
   
   @Override public void render(){
