@@ -20,8 +20,8 @@ public class Player{
     canJump = false;
  }
  
- public void applyInputs(){
-   if (!fire){ //<>// //<>//
+ public void applyInputs(){ //<>//
+   if (!fire){ //<>//
      if (inputs[0] && canJump && velocity.y == 0){
      this.apply(jump);
      canJump = false;
@@ -76,7 +76,6 @@ public class Player{
    }
    if (dir == Left){
      this.hitbox.position.x = other.hitbox.position.x + other.hitbox.size.x;
-     //println(this.hitbox.position.x);
    }
    if (dir == Right){
      this.hitbox.position.x = other.hitbox.position.x - this.hitbox.size.x - 1;
