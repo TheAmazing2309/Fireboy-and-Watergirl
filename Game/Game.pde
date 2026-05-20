@@ -10,7 +10,8 @@ public final int PAUSE = 2;
 public final int WIN = 3;
 public final int LOSE = 4;
 public int gameState = 0;
-
+public ArrayList<Button> buttonList= new ArrayList<Button>();
+public ArrayList<DoorTile> doorList= new ArrayList<DoorTile>();
 Player watergirl, fireboy;
 PImage[] waterAnimation, fireAnimation;
 boolean [] inputs = {false,false,false,false,false,false};
@@ -20,6 +21,7 @@ UI ui = new UI();
 Map map;
 
 void setup(){
+  //pixelDensity(1);
   textSize(50);
   size(1, 1);
   map = new Map(1);
@@ -27,28 +29,40 @@ void setup(){
   map.render();
   watergirl = new Player(false, new Hitbox(new PVector(40,100), new PVector(10,10), true), waterAnimation);
   fireboy = new Player(true, new Hitbox(new PVector(80,100), new PVector(10,10), true), fireAnimation);
+  buttonList.add(new Button(50,50,200,200,color(#00FF00)));
 }
 
 void draw(){
-  //ui.display(gameState); 
-  
-      if (gameState == TITLE){
-    //image();
+    if (gameState == TITLE){
+      for (int i = 0; i < buttonList.size(); i++){
+        background(255);
+        buttonList.get(i).render("Play");
+      }
     }else if (gameState == PLAY){
       background(255);
-      map.render();
-      timer.render();
-      watergirl.render();
-      fireboy.render();
       watergirl.applyInputs();
       fireboy.applyInputs();
       watergirl.applyAdjustments();
       fireboy.applyAdjustments();
+      map.render();
+      timer.render();
+      watergirl.render();
+      fireboy.render();
+
+      //int i = 0;
+      //while(doorList.get(i).opened == true){
+      //  i++;
+      //  if(i == 2){
+      //  gameState = 3;
+      //  break;
+      //  }
+      //}
+      
     }else if (gameState == PAUSE){
     //image();
     }else if (gameState == WIN){
     //image();
-    System.out.println("win");
+    //System.out.println("win");
     }else if (gameState == LOSE){
     //image();
     }
@@ -104,4 +118,10 @@ void keyReleased(){
     inputs[5] = false;
   }
   
+}
+
+void mouseClicked(){
+    for (int i = 0; i < buttonList.size(); i++){
+      buttonList.get(i).clicked();
+    }
 }
