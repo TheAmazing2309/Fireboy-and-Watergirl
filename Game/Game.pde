@@ -1,5 +1,5 @@
 import java.util.*;
-public final int scale = 1;
+public final int scale = 2;
 public final int Top = 0;
 public final int Bottom = 1;
 public final int Left = 2;
@@ -10,7 +10,7 @@ public final int PAUSE = 2;
 public final int WIN = 3;
 public final int LOSE = 4;
 public final float slidingTileThickness = 0.2;
-
+public boolean renderedMap = false;
 
 public int gameState = 0;
 public ArrayList<Button> buttonList= new ArrayList<Button>();
@@ -27,6 +27,7 @@ void setup(){
   //pixelDensity(1);
   textSize(50);
   size(1, 1);
+  noStroke();
   map = new Map(1);
   windowResize((int)(scale*map.tileMap[0].length*Tile.size), (int)(scale*map.tileMap.length*Tile.size));
   map.render();
@@ -41,7 +42,12 @@ void draw(){
         buttonList.get(i).render("Play");
       }
     }else if (gameState == PLAY){
-      background(255);
+      if (!renderedMap) {
+        renderedMap = true;
+        background(255);
+        map.render();
+      }
+      
       map.resetButtons();
       
       watergirl.applyInputs();
@@ -52,7 +58,8 @@ void draw(){
       
       map.applyButtons();
       
-      map.render();
+      //background(255);
+      //map.render();
       timer.render();
       watergirl.render();
       fireboy.render();
