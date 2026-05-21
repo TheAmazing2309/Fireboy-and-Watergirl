@@ -9,6 +9,9 @@ public final int PLAY = 1;
 public final int PAUSE = 2;
 public final int WIN = 3;
 public final int LOSE = 4;
+public final float slidingTileThickness = 0.2;
+public boolean renderedMap = false;
+
 public int gameState = 0;
 public ArrayList<Button> buttonList= new ArrayList<Button>();
 public ArrayList<DoorTile> doorList= new ArrayList<DoorTile>();
@@ -21,30 +24,44 @@ UI ui = new UI();
 Map map;
 
 void setup(){
-  //pixelDensity(1);
+  //pixelDensity(2);
   textSize(50);
   size(1, 1);
+  noStroke();
   map = new Map(1);
-  windowResize(scale*map.tileMap[0].length*Tile.size, scale*map.tileMap.length*Tile.size);
-  map.render();
+  windowResize((int)(scale*map.tileMap[0].length*Tile.size), (int)(scale*map.tileMap.length*Tile.size));
+  map.render(true);
   watergirl = new Player(false, new Hitbox(new PVector(40,100), new PVector(10,10), true), waterAnimation);
   fireboy = new Player(true, new Hitbox(new PVector(80,100), new PVector(10,10), true), fireAnimation);
-  buttonList.add(new Button(50,50,200,200,color(#00FF00)));
+  buttonList.add(new Button(400,200,500,240,color(#00FF00)));
 }
 
 void draw(){
     if (gameState == TITLE){
-      for (int i = 0; i < buttonList.size(); i++){
         background(255);
+        image(loadImage("sprites/fireboyWallpaper2.jpg"),0,0,width,height);
+      for (int i = 0; i < buttonList.size(); i++){
         buttonList.get(i).render("Play");
       }
     }else if (gameState == PLAY){
-      background(255);
+      if (!renderedMap) {
+        renderedMap = true;
+        background(255);
+        map.render(true);
+      }
+      
+      map.resetButtons();
+      
       watergirl.applyInputs();
       fireboy.applyInputs();
+      
       watergirl.applyAdjustments();
       fireboy.applyAdjustments();
-      map.render();
+      
+      map.applyButtons();
+      
+      //background(255);
+      map.render(false);
       timer.render();
       watergirl.render();
       fireboy.render();
@@ -99,13 +116,13 @@ void keyPressed(){
 }
 
 void keyReleased(){
-  if (key == 'w'){
+  if (key == 'w' || key == 'W'){
     inputs[0] = false;
   }
-  if (key == 'a'){
+  if (key == 'a' || key == 'A'){
     inputs[1] = false;
   }
-  if (key == 'd'){
+  if (key == 'd' || key == 'D'){
     inputs[2] = false;
   }
   if (keyCode == UP){
