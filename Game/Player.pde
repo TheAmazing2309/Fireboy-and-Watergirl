@@ -9,6 +9,8 @@ public class Player{
   boolean canJump;
   PVector velocity, acceleration;
   PImage[] animation;
+  float prevX;
+  float prevY;
 
  
   public Player(boolean fire, Hitbox hitbox, PImage[] animation){   
@@ -18,9 +20,13 @@ public class Player{
     velocity = new PVector(0,0);
     acceleration = new PVector(0,0);
     canJump = false;
+    prevX = hitbox.position.x;
+    prevY = hitbox.position.y;
  }
  
  public void applyInputs(){ //<>//
+     prevX = hitbox.position.x;
+   prevY = hitbox.position.y;
    if (!fire){ //<>//
      if (inputs[0] && canJump && velocity.y == 0){
      this.apply(jump);
@@ -55,6 +61,8 @@ public class Player{
  }
  
  public void render(){
+   fill(255);
+   rect(prevX, prevY,  hitbox.size.x, hitbox.size.y);
    if (fire){
      fill(#FF0000);
    }else{
@@ -65,10 +73,15 @@ public class Player{
  }
  
  private void adjust(int dir, Tile other){
+   
    if (dir == Bottom){
       this.hitbox.position.y = other.hitbox.position.y - this.hitbox.size.y;
       this.velocity = new PVector(0, 0);
       this.canJump = true;
+      if (other instanceof ButtonTile && !((ButtonTile)other).openThisFrame){
+        ((ButtonTile)other).activate();
+        ((ButtonTile)other).openThisFrame = true;
+      }
    }
    if (dir == Top){
      this.hitbox.position.y = other.hitbox.position.y + other.hitbox.size.y + 1;
@@ -84,6 +97,7 @@ public class Player{
  
  public void applyAdjustments(){
   // ArrayList<Tile> tiles = nearestTiles();
+
    int startX = Math.max(0, (int)this.hitbox.position.x/(Tile.size*scale)-1);
    int startY = Math.max(0, (int)this.hitbox.position.y/(Tile.size*scale)-1);
    int endX = Math.min(map.tileMap[0].length - 1,(int)(this.hitbox.position.x+this.hitbox.size.x)/(Tile.size*scale) + 1);
