@@ -1,31 +1,88 @@
 import java.util.*;
-public final int scale = 10;
-public final int TOP = 0;
-public final int BOTTOM = 1;
-public final int LEFT = 2;
-public final int RIGHT = 3;
+public final int scale = 2;
+public final int Top = 0;
+public final int Bottom = 1;
+public final int Left = 2;
+public final int Right = 3;
+public final int TITLE = 0;
+public final int PLAY = 1;
+public final int PAUSE = 2;
+public final int WIN = 3;
+public final int LOSE = 4;
+public final float slidingTileThickness = 0.2;
+public boolean renderedMap = false;
 
+public int gameState = 0;
+public ArrayList<Button> buttonList= new ArrayList<Button>();
+public ArrayList<DoorTile> doorList= new ArrayList<DoorTile>();
 Player watergirl, fireboy;
 PImage[] waterAnimation, fireAnimation;
 boolean [] inputs = {false,false,false,false,false,false};
+Timer timer = new Timer();
+UI ui = new UI();
 
 Map map;
 
 void setup(){
-  size(5*16*10, 5*16*10);
+  //pixelDensity(2);
+  textSize(50);
+  size(1, 1);
+  noStroke();
   map = new Map(1);
-  map.render();
-  watergirl = new Player(false, new Hitbox(new PVector(40,10), new PVector(10,10)), waterAnimation);
-  fireboy = new Player(true, new Hitbox(new PVector(10,10), new PVector(10,10)), fireAnimation);
+  windowResize((int)(scale*map.tileMap[0].length*Tile.size), (int)(scale*map.tileMap.length*Tile.size));
+  map.render(true);
+  watergirl = new Player(false, new Hitbox(new PVector(40,100), new PVector(10,10), true), waterAnimation);
+  fireboy = new Player(true, new Hitbox(new PVector(80,100), new PVector(10,10), true), fireAnimation);
+  buttonList.add(new Button(400,200,500,240,color(#00FF00)));
 }
 
 void draw(){
-  background(255);
-  map.render();
-  watergirl.display();
-  fireboy.display();
-  watergirl.move();
-  fireboy.move();
+    if (gameState == TITLE){
+        background(255);
+        image(loadImage("sprites/fireboyWallpaper2.jpg"),0,0,width,height);
+      for (int i = 0; i < buttonList.size(); i++){
+        buttonList.get(i).render("Play");
+      }
+    }else if (gameState == PLAY){
+      if (!renderedMap) {
+        renderedMap = true;
+        background(255);
+        map.render(true);
+      }
+      
+      map.resetButtons();
+      
+      watergirl.applyInputs();
+      fireboy.applyInputs();
+      
+      watergirl.applyAdjustments();
+      fireboy.applyAdjustments();
+      
+      map.applyButtons();
+      
+      //background(255);
+      map.render(false);
+      timer.render();
+      watergirl.render();
+      fireboy.render();
+
+      //int i = 0;
+      //while(doorList.get(i).opened == true){
+      //  i++;
+      //  if(i == 2){
+      //  gameState = 3;
+      //  break;
+      //  }
+      //}
+      
+    }else if (gameState == PAUSE){
+    //image();
+    }else if (gameState == WIN){
+    //image();
+    //System.out.println("win");
+    }else if (gameState == LOSE){
+    //image();
+    }
 }
 
 
@@ -52,16 +109,20 @@ void keyPressed(){
     System.out.println("water: " + watergirl.velocity.x + " fire: " + fireboy.velocity.x);
     System.out.println(inputs[0] + " " + inputs[1] + " " + inputs[2] + " " + inputs[3] + " " + inputs[4] + " " + inputs[5]);
   }
+  if (key == 'l'){
+  gameState++;
+  gameState %= 5;
+  }
 }
 
 void keyReleased(){
-  if (key == 'w'){
+  if (key == 'w' || key == 'W'){
     inputs[0] = false;
   }
-  if (key == 'a'){
+  if (key == 'a' || key == 'A'){
     inputs[1] = false;
   }
-  if (key == 'd'){
+  if (key == 'd' || key == 'D'){
     inputs[2] = false;
   }
   if (keyCode == UP){
@@ -74,4 +135,10 @@ void keyReleased(){
     inputs[5] = false;
   }
   
+}
+
+void mouseClicked(){
+    for (int i = 0; i < buttonList.size(); i++){
+      buttonList.get(i).clicked();
+    }
 }

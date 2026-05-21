@@ -2,22 +2,26 @@ public abstract class Tile{
   public Hitbox hitbox;
   public PImage[] animation;
   public int animationState;
-  public boolean collisionOn;
   public static final int size = 16;
   
-  public Tile(Hitbox hitbox, PImage[] a, boolean collisionOn){
+  public Tile(Hitbox hitbox, PImage[] a){
     this.hitbox = hitbox;
-    this.collisionOn = collisionOn;
     animation = a;
     animationState = 0;
   }
   
   public void render(){
-    if (animation == null) return;
+    if (animation == null) {
+      fill(255);
+      rect(hitbox.position.x, hitbox.position.y, hitbox.size.x, hitbox.size.y);
+      return;
+    }
     image(animation[animationState], hitbox.position.x, hitbox.position.y, hitbox.size.x, hitbox.size.y);
     animationState++;
     animationState%=animation.length;
   }
   
-  public abstract boolean collide(Player other);
+  @Override public String toString(){
+    return (this.hitbox.position.y/(size*scale)) + " " + (this.hitbox.position.x/(size*scale));
+  }
 }
