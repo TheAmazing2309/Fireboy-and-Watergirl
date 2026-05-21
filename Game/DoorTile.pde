@@ -3,14 +3,14 @@ public class DoorTile extends Tile{
   public boolean fire;
 
   
-  public DoorTile(Hitbox hitbox, PImage[] a, boolean fire){
-    super(hitbox,a);
+  public DoorTile(Hitbox h1, Hitbox h2, PImage[] a, boolean fire){
+    super(h1, h2 ,a);
     this.fire = fire;
   }
   
   public void update(Player a){
-    this.hitbox.collide(a.hitbox);
-    if ((this.hitbox.collisions[Right] == true || this.hitbox.collisions[Left] == true || this.hitbox.collisions[Top] == true|| this.hitbox.collisions[Bottom] == true)){
+    this.collisionsHitbox.collide(a.hitbox);
+    if ((this.collisionsHitbox.collisions[Right] == true || this.collisionsHitbox.collisions[Left] == true || this.collisionsHitbox.collisions[Top] == true|| this.collisionsHitbox.collisions[Bottom] == true)){
     if (fire && a.fire){
     opened = true;
     }

@@ -75,7 +75,7 @@ public class Player{
  private void adjust(int dir, Tile other){
    
    if (dir == Bottom){
-      this.hitbox.position.y = other.hitbox.position.y - this.hitbox.size.y;
+      this.hitbox.position.y = other.collisionsHitbox.position.y - this.hitbox.size.y;
       this.velocity = new PVector(0, 0);
       this.canJump = true;
       if (other instanceof ButtonTile && !((ButtonTile)other).openThisFrame){
@@ -84,14 +84,14 @@ public class Player{
       }
    }
    if (dir == Top){
-     this.hitbox.position.y = other.hitbox.position.y + other.hitbox.size.y;
+     this.hitbox.position.y = other.collisionsHitbox.position.y + other.collisionsHitbox.size.y;
      this.velocity = new PVector(0, 0);
    }
    if (dir == Left){
-     this.hitbox.position.x = other.hitbox.position.x + other.hitbox.size.x;
+     this.hitbox.position.x = other.collisionsHitbox.position.x + other.collisionsHitbox.size.x;
    }
    if (dir == Right){
-     this.hitbox.position.x = other.hitbox.position.x - this.hitbox.size.x;
+     this.hitbox.position.x = other.collisionsHitbox.position.x - this.hitbox.size.x;
    }
  }
  
@@ -105,7 +105,7 @@ public class Player{
    for (int i = startY; i <= endY; i++){
      for (int j = startX; j <= endX; j++){
        Tile tile = map.tileMap[i][j];
-       this.hitbox.collide(tile.hitbox);
+       this.hitbox.collide(tile.collisionsHitbox);
        for (int d = 0; d <= 3; d++){
           if (this.hitbox.collisions[d]){
            // System.out.println(tile + " x " + d);
@@ -117,7 +117,7 @@ public class Player{
  }
  
  public void checkDoor(DoorTile a){
-   if (Math.pow(this.hitbox.position.x - a.hitbox.position.x, 2) + Math.pow(this.hitbox.position.y - a.hitbox.position.y, 2) <= activationDistance){
+   if (Math.pow(this.hitbox.position.x - a.collisionsHitbox.position.x, 2) + Math.pow(this.hitbox.position.y - a.collisionsHitbox.position.y, 2) <= activationDistance){
    a.opened = true;
    }
  }

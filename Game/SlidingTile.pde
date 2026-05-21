@@ -6,8 +6,8 @@ public class SlidingTile extends Tile{
   private int positionAt = 0;
   
   
-  public SlidingTile(Hitbox hitbox, PImage[] a, int direction){
-    super(hitbox, a);
+  public SlidingTile(Hitbox h1, Hitbox h2, PImage[] a, int direction){
+    super(h1, h2, a);
     this.direction = direction;
   }
   
@@ -15,16 +15,16 @@ public class SlidingTile extends Tile{
     if (positionAt >= openSpeed) return true;
     positionAt++;
     if (direction == Top){
-      hitbox.size.y -= (Tile.size * scale) / openSpeed;
+      collisionsHitbox.size.y -= (Tile.size * scale) / openSpeed;
     }
     if (direction == Bottom){
-      hitbox.size.y -= (Tile.size * scale) / openSpeed;
+      collisionsHitbox.size.y -= (Tile.size * scale) / openSpeed;
     }
     if (direction == Left){
-      hitbox.size.x -= (Tile.size * scale) / openSpeed;
+      collisionsHitbox.size.x -= (Tile.size * scale) / openSpeed;
     }
     if (direction == Right){
-      hitbox.size.x -= (Tile.size * scale) / openSpeed;
+      collisionsHitbox.size.x -= (Tile.size * scale) / openSpeed;
     }
     return false;
   }
@@ -33,16 +33,16 @@ public class SlidingTile extends Tile{
     if (positionAt <= 0) return true;
     positionAt--;
     if (direction == Top){
-      hitbox.size.y += (Tile.size * scale) / openSpeed;
+      collisionsHitbox.size.y += (Tile.size * scale) / openSpeed;
     }
     if (direction == Bottom){
-      hitbox.size.y += (Tile.size * scale) / openSpeed;
+      collisionsHitbox.size.y += (Tile.size * scale) / openSpeed;
     }
     if (direction == Left){
-      hitbox.size.x += (Tile.size * scale) / openSpeed;
+      collisionsHitbox.size.x += (Tile.size * scale) / openSpeed;
     }
     if (direction == Right){
-      hitbox.size.x += (Tile.size * scale) / openSpeed;
+      collisionsHitbox.size.x += (Tile.size * scale) / openSpeed;
     }
     return false;
   }
@@ -51,6 +51,6 @@ public class SlidingTile extends Tile{
     fill(255);
     println("THIS SHOULD NOT BE IN THE FINAL PRODUCT!!");
     fill(0);
-    rect(hitbox.position.x,hitbox.position.y,hitbox.size.x, hitbox.size.y);
+    rect(renderHitbox.position.x,renderHitbox.position.y,renderHitbox.size.x, renderHitbox.size.y);
   }
 }
