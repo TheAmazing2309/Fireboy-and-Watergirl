@@ -44,7 +44,9 @@ public class Player{
      this.hitbox.position.add(speed,0);
      }
    }
-    acceleration.add(gravity);
+   if(velocity.y < 8){
+      acceleration.add(gravity);
+   }
     velocity.add(acceleration);
     hitbox.position.add(velocity);
     acceleration.set(0, 0);

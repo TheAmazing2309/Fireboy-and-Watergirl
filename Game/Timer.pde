@@ -18,6 +18,8 @@ public class Timer{
   }
   
   public void render(){
+    fill(255);
+    rect(width/2 - 80, 60,200,-50);
     getTime();
     fill(0);
     String text = "";

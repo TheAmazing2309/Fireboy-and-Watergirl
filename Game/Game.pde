@@ -22,6 +22,7 @@ Map map;
 
 void setup(){
   //pixelDensity(1);
+  noStroke();
   textSize(50);
   size(1, 1);
   map = new Map(1);
