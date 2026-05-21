@@ -61,8 +61,8 @@ public class Player{
  }
  
  public void render(){
-   fill(255);
-   rect(prevX, prevY,  hitbox.size.x, hitbox.size.y);
+   //fill(255);
+   //rect(prevX, prevY,  hitbox.size.x, hitbox.size.y);
    if (fire){
      fill(#FF0000);
    }else{
@@ -84,14 +84,14 @@ public class Player{
       }
    }
    if (dir == Top){
-     this.hitbox.position.y = other.hitbox.position.y + other.hitbox.size.y + 1;
+     this.hitbox.position.y = other.hitbox.position.y + other.hitbox.size.y;
      this.velocity = new PVector(0, 0);
    }
    if (dir == Left){
      this.hitbox.position.x = other.hitbox.position.x + other.hitbox.size.x;
    }
    if (dir == Right){
-     this.hitbox.position.x = other.hitbox.position.x - this.hitbox.size.x - 1;
+     this.hitbox.position.x = other.hitbox.position.x - this.hitbox.size.x;
    }
  }
  

@@ -65,7 +65,10 @@ public class Map{
     for (int i = 0; i < levelHeight; i++){
       for (int j = 0; j < levelWidth; j++){
         if (all) tileMap[i][j].render();
-        if (!all && tileMap[i][j] == null) tileMap[i][j].render();
+        if (!all && tileMap[i][j].animation == null){
+          //println(tileMap[i][j]);
+          tileMap[i][j].render();
+        }
       }
     }
   }
