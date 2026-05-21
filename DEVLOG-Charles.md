@@ -18,3 +18,6 @@ I added a gameState variable and veriables for differnt game states which can ch
 
 ### 2026-05-19 - Worked on buttons
 I made a button class which will be used to change screens later on and do fuctions like restart. I got the buttons to display and to highlight when they are hovered over. There is an ArrayList of buttons that the game will constantly loop thought to check if it was clicked and if it should be high lighted. I addded to the door class so that when a player overlaps it hit box with the door then the door will update as open. I also added colors to the buttons and players. 2 hour.
+
+### 2026-05-20 - images
+I started to look for images/sprites to use in our game. 1 hour.
