@@ -25,13 +25,14 @@ void setup(){
   //pixelDensity(1);
   textSize(50);
   size(1, 1);
+  //textureMode(NORMAL);
   noStroke();
   map = new Map(1); //<>//
   windowResize((int)(scale*map.tileMap[0].length*Tile.size), (int)(scale*map.tileMap.length*Tile.size));
   map.render(true);
   watergirl = new Player(false, new Hitbox(new PVector(40,100), new PVector(10,10), true), waterAnimation);
   fireboy = new Player(true, new Hitbox(new PVector(80,100), new PVector(10,10), true), fireAnimation);
-  buttonList.add(new Button(400,200,500,240,color(#00FF00)));
+  buttonList.add(new Button(width/2,56 * height/100,width/10,height/30,color(#00FF00)));
 }
 
 void draw(){
@@ -39,7 +40,7 @@ void draw(){
         background(255);
         image(loadImage("sprites/fireboyWallpaper2.jpg"),0,0,width,height);
       for (int i = 0; i < buttonList.size(); i++){
-        buttonList.get(i).render("Play");
+        buttonList.get(i).render("");
       }
     }else if (gameState == PLAY){
       if (!renderedMap) {
@@ -74,12 +75,12 @@ void draw(){
       //}
       
     }else if (gameState == PAUSE){
-    //image();
+    image(loadImage("sprites/pauseScreen.png"),width/10, height/10,width/1.2,height/1.2);
     }else if (gameState == WIN){
-    //image();
+    image(loadImage("sprites/winScreen.png"),width/10, height/10,width/1.2,height/1.2);
     //System.out.println("win");
     }else if (gameState == LOSE){
-    //image();
+    image(loadImage("sprites/loseScreen.png"),width/10, height/10,width/1.2,height/1.2);
     }
 }
 
@@ -111,6 +112,12 @@ void keyPressed(){
   gameState++;
   gameState %= 5;
   }
+  //if(key == ESC && gameState == PLAY){
+  //  gameState = PAUSE;
+  //}
+  //if(key == ESC && gameState == PAUSE){
+  //  gameState = PLAY;
+  //}
 }
 
 void keyReleased(){

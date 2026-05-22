@@ -16,6 +16,15 @@ public abstract class Tile{
       rect(hitbox.position.x, hitbox.position.y, hitbox.size.x, hitbox.size.y);
       return;
     }
+    
+    //beginShape();
+    //texture(animation[animationState]);
+    //vertex(hitbox.position.x, hitbox.position.y);
+    //vertex(hitbox.position.x + hitbox.size.x, hitbox.position.y);
+    //vertex(hitbox.position.x + hitbox.size.x, hitbox.position.y + hitbox.size.y);
+    //vertex(hitbox.position.x, hitbox.position.y + hitbox.size.y);
+    //endShape();
+    
     image(animation[animationState], hitbox.position.x, hitbox.position.y, hitbox.size.x, hitbox.size.y);
     animationState++;
     animationState%=animation.length;

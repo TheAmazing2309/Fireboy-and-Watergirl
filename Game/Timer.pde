@@ -33,4 +33,9 @@ public class Timer{
     }
   }
   
+  public void resatrt(){
+  time = 0;
+  pausedTime = 0;
+  }
+  
 }
