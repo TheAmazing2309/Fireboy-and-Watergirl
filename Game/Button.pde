@@ -33,6 +33,8 @@ public class Button{
        }else if (this.equals(pauseButtonList.get(1))){
          gameState = PLAY;
          //implement retry
+         fireboy.reset();
+         watergirl.reset();
        }else if (this.equals(pauseButtonList.get(2))){
          gameState = PLAY;
        }else if (this.equals(pauseButtonList.get(0))){
