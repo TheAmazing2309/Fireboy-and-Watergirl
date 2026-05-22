@@ -31,8 +31,8 @@ void setup(){
   map = new Map(1);
   windowResize((int)(scale*map.tileMap[0].length*Tile.size), (int)(scale*map.tileMap.length*Tile.size));
   map.render(true);
-  watergirl = new Player(false, new Hitbox(new PVector(40,100), new PVector(10,10), true), waterAnimation);
-  fireboy = new Player(true, new Hitbox(new PVector(80,100), new PVector(10,10), true), fireAnimation);
+  watergirl = new Player(false, new Hitbox(new PVector(40,100), new PVector(10,20), true), waterAnimation);
+  fireboy = new Player(true, new Hitbox(new PVector(80,100), new PVector(10,20), true), fireAnimation);
   buttonList.add(new Button(400,200,500,240,color(#00FF00)));
 }
 

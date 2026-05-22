@@ -1,10 +1,10 @@
 public class Player{
   public Hitbox hitbox;
   
-  PVector jump = new PVector(0, -8);
+  PVector jump = new PVector(0, -9);
   PVector gravity = new PVector(0, .5);
   float speed = 2;
-  public final float activationDistance = 100;
+  public final float activationDistance = 1000;
   boolean fire;
   boolean canJump;
   PVector velocity, acceleration;
@@ -114,11 +114,19 @@ public class Player{
         }
      }
    }
+   checkDoor(map.doors[0]);
+   checkDoor(map.doors[1]);
  }
  
  public void checkDoor(DoorTile a){
-   if (Math.pow(this.hitbox.position.x - a.collisionsHitbox.position.x, 2) + Math.pow(this.hitbox.position.y - a.collisionsHitbox.position.y, 2) <= activationDistance){
-   a.opened = true;
+   //println(Math.pow(this.hitbox.position.x - a.collisionsHitbox.position.x, 2) + Math.pow(this.hitbox.position.y - a.collisionsHitbox.position.y, 2));
+   //if (Math.pow(this.hitbox.position.x - a.collisionsHitbox.position.x, 2) + Math.pow(this.hitbox.position.y - a.collisionsHitbox.position.y, 2) <= activationDistance && this.fire == a.fire){
+   if (this.hitbox.position.x + this.hitbox.size.x >= a.renderHitbox.position.x && this.hitbox.position.x <= a.renderHitbox.position.x + a.renderHitbox.size.x && this.hitbox.position.y + this.hitbox.size.y >= a.renderHitbox.position.y + a.renderHitbox.size.y && this.hitbox.position.y <= a.renderHitbox.position.y && this.fire == a.fire){
+     println("OPEN");
+     a.opened = true;
+   } else if (this.fire == a.fire){
+     println("CLOSE");
+     a.opened = false;
    }
  }
 

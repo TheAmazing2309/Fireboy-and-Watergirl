@@ -8,15 +8,9 @@ public class DoorTile extends Tile{
     this.fire = fire;
   }
   
-  public void update(Player a){
-    this.collisionsHitbox.collide(a.hitbox);
-    if ((this.collisionsHitbox.collisions[Right] == true || this.collisionsHitbox.collisions[Left] == true || this.collisionsHitbox.collisions[Top] == true|| this.collisionsHitbox.collisions[Bottom] == true)){
-    if (fire && a.fire){
-    opened = true;
-    }
-    if (!fire && !a.fire){
-      opened = true;
-    }
-    }
+  @Override public void render(){
+    if (opened) fill(0, 255, 0);
+    else fill(255, 0, 0);
+    rect(renderHitbox.position.x, renderHitbox.position.y, renderHitbox.size.x, renderHitbox.size.y);
   }
 }

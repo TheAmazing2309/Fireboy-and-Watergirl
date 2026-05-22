@@ -5,6 +5,7 @@ public class Map{
   private int levelHeight;
   public Tile[][] tileMap;
   public ButtonTile[] buttons;
+  public DoorTile[] doors;
 
   public Map(int level){
     String[] lines = loadStrings("levels/"+level+".txt");
@@ -12,6 +13,7 @@ public class Map{
     levelWidth = lines[0].length();
     levelHeight = lines.length;
     buttons = new ButtonTile[10];
+    doors = new DoorTile[2];
     SlidingTile[] slidingTileTemp = new SlidingTile[10];
     //System.out.println(levelHeight + "x" + levelWidth);
     tileMap = new Tile[levelHeight][levelWidth];
@@ -46,6 +48,13 @@ public class Map{
           }
           tileMap[i][j] = temp;
           slidingTileTemp[el] = (SlidingTile)temp;
+        }
+        else if (el == ']' || el == '['){
+          boolean fire = (el == ']');
+          int index = 0;
+          if (doors[0] != null) index = 1;
+          doors[index] = new DoorTile(new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), false), new Hitbox(new PVector(j * tileSize, (i-1) * tileSize), new PVector(tileSize, tileSize * 2), false), null, fire);
+          tileMap[i][j] = doors[index];
         }
         else throw new IllegalArgumentException("Illegal char in level " + level);
         }
