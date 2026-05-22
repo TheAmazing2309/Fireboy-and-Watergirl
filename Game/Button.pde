@@ -25,9 +25,18 @@ public class Button{
    
    public void clicked(){
      if (mouseX > x1 - x2 && mouseX < x1 + x2 && mouseY > y1 - y2 && mouseY < y1 + y2){
-       if(this.equals(buttonList.get(0))){
+       if(this.equals(titleButtonList.get(0))){
          timer.pause = System.nanoTime();
          gameState++;
+       }else if (this.equals(pauseButtonList.get(0))){
+         gameState = TITLE;
+       }else if (this.equals(pauseButtonList.get(1))){
+         gameState = PLAY;
+         //implement retry
+       }else if (this.equals(pauseButtonList.get(2))){
+         gameState = PLAY;
+       }else if (this.equals(pauseButtonList.get(0))){
+         
        }
      }
    }
