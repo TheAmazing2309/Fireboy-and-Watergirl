@@ -29,10 +29,10 @@ public class Player{
     prevY = hitbox.position.y;
  }
  
- public void applyInputs(){ //<>// //<>//
+ public void applyInputs(){ //<>// //<>// //<>//
      prevX = hitbox.position.x;
    prevY = hitbox.position.y;
-   if (!fire){ //<>// //<>//
+   if (!fire){ //<>// //<>// //<>//
      if (inputs[0] && canJump && velocity.y == 0){
      this.apply(jump);
      canJump = false;
@@ -137,6 +137,8 @@ public class Player{
     canJump = false;
     prevX = hitbox.position.x;
     prevY = hitbox.position.y;
+    System.out.println(hitbox.position.x);
+    System.out.println(originalHitbox.position.x);
  }
 
 }
