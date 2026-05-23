@@ -21,3 +21,6 @@ I made a button class which will be used to change screens later on and do fucti
 
 ### 2026-05-20 - images
 I started to look for images/sprites to use in our game. 1 hour.
+
+### 2026-05-20 - images and button
+I continued to look for images/sprites to use in our game and moved the button to where the play is. 1 hour.
