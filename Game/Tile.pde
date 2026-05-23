@@ -3,11 +3,13 @@ public abstract class Tile{
   public Hitbox renderHitbox;
   public PImage[] animation;
   public int animationState;
+  public boolean renderEveryFrame;
   public static final int size = 16;
   
-  public Tile(Hitbox collisionsHitbox, Hitbox renderHitbox, PImage[] a){
+  public Tile(Hitbox collisionsHitbox, Hitbox renderHitbox, PImage[] a, boolean r){
     this.collisionsHitbox = collisionsHitbox;
     this.renderHitbox = renderHitbox;
+    renderEveryFrame = r;
     animation = a;
     animationState = 0;
   }

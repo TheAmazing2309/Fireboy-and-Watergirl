@@ -2,8 +2,8 @@ public class ButtonTile extends Tile{
   SlidingTile tileLink;
   public boolean openThisFrame;
   
-  public ButtonTile (Hitbox h1, Hitbox h2, PImage[] a, SlidingTile tileLink){
-    super(h1, h2, a);
+  public ButtonTile (Hitbox h1, Hitbox h2, PImage[] a, SlidingTile tileLink, boolean r){
+    super(h1, h2, a, r);
     this.tileLink = tileLink;
     openThisFrame = false;
   }

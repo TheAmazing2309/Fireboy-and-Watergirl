@@ -6,8 +6,8 @@ public class SlidingTile extends Tile{
   private int positionAt = 0;
   
   
-  public SlidingTile(Hitbox h1, Hitbox h2, PImage[] a, int direction){
-    super(h1, h2, a);
+  public SlidingTile(Hitbox h1, Hitbox h2, PImage[] a, int direction, boolean r){
+    super(h1, h2, a, r);
     this.direction = direction;
   }
   
