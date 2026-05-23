@@ -33,7 +33,7 @@ public class Timer{
     }
   }
   
-  public void resatrt(){
+  public void restart(){
   time = 0;
   pausedTime = 0;
   }
