@@ -20,7 +20,7 @@ public class Player{
     this.fire = fire;
     this.hitbox = hitbox;
     this.animation = animation;
-    originalHitbox = hitbox;
+    originalHitbox = this.hitbox.copy();
     originalAnimation = animation;
     velocity = new PVector(0,0);
     acceleration = new PVector(0,0);
@@ -29,10 +29,10 @@ public class Player{
     prevY = hitbox.position.y;
  }
  
- public void applyInputs(){ //<>//
+ public void applyInputs(){ //<>// //<>//
      prevX = hitbox.position.x;
    prevY = hitbox.position.y;
-   if (!fire){ //<>//
+   if (!fire){ //<>// //<>//
      if (inputs[0] && canJump && velocity.y == 0){
      this.apply(jump);
      canJump = false;
