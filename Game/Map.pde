@@ -57,6 +57,9 @@ public class Map{
           doors[index] = new DoorTile(new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), false), new Hitbox(new PVector(j * tileSize, (i-1) * tileSize), new PVector(tileSize, tileSize * 2), false), null, fire);
           tileMap[i][j] = doors[index];
         }
+        else if (el == 'z' || el == 'y' || el == 'x'){
+          tileMap[i][j] = new LiquidTile(new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), true), new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), false), null, (el=='z'||el=='x'), (el=='z'||el=='y'));
+        }
         else throw new IllegalArgumentException("Illegal char in level " + level);
         }
       }

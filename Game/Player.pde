@@ -116,7 +116,11 @@ public class Player{
        for (int d = 0; d <= 3; d++){
           if (this.hitbox.collisions[d]){
            // System.out.println(tile + " x " + d);
-            this.adjust(d, tile);
+            if (!(tile instanceof LiquidTile)) this.adjust(d, tile);
+            else{
+              if (fire && ((LiquidTile)tile).fireAllergic) gameState = LOSE;
+              if (!fire && ((LiquidTile)tile).waterAllergic) gameState = LOSE;
+            }
           }
         }
      }
