@@ -11,12 +11,17 @@ public class Player{
   PImage[] animation;
   float prevX;
   float prevY;
-
- 
+  
+  //original info 
+  Hitbox originalHitbox;
+  PImage[] originalAnimation;
+  
   public Player(boolean fire, Hitbox hitbox, PImage[] animation){   
     this.fire = fire;
     this.hitbox = hitbox;
     this.animation = animation;
+    originalHitbox = hitbox;
+    originalAnimation = animation;
     velocity = new PVector(0,0);
     acceleration = new PVector(0,0);
     canJump = false;
@@ -50,7 +55,9 @@ public class Player{
      this.hitbox.position.add(speed,0);
      }
    }
-    acceleration.add(gravity);
+   if(velocity.y < 8){
+      acceleration.add(gravity);
+   }
     velocity.add(acceleration);
     hitbox.position.add(velocity);
     acceleration.set(0, 0);
@@ -120,6 +127,16 @@ public class Player{
    if (Math.pow(this.hitbox.position.x - a.hitbox.position.x, 2) + Math.pow(this.hitbox.position.y - a.hitbox.position.y, 2) <= activationDistance){
    a.opened = true;
    }
+ }
+ 
+ public void reset(){
+    hitbox = originalHitbox;
+    animation = originalAnimation;
+    velocity = new PVector(0,0);
+    acceleration = new PVector(0,0);
+    canJump = false;
+    prevX = hitbox.position.x;
+    prevY = hitbox.position.y;
  }
 
 }

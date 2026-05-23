@@ -11,23 +11,34 @@ public class Button{
    }
    
    public void render(String text){
-     rectMode(CORNERS);
-     if (mouseX > x1 && mouseX < x2 && mouseY > y1 && mouseY < y2){
+     rectMode(RADIUS);
+     if (mouseX > x1 - x2 && mouseX < x1 + x2 && mouseY > y1 - y2 && mouseY < y1 + y2){
      fill(180);
      }else{
      fill(c);
      }
      rect(x1,y1,x2,y2);
      fill(255);
-     text(text,x1,(y1+y2)/2 + 50);
+     text(text,x1-40,y1);
      rectMode(CORNER);
    }
    
    public void clicked(){
-     if (mouseX > x1 && mouseX < x2 && mouseY > y1 && mouseY < y2){
-       if(this.equals(buttonList.get(0))){
+     if (mouseX > x1 - x2 && mouseX < x1 + x2 && mouseY > y1 - y2 && mouseY < y1 + y2){
+       if(this.equals(titleButtonList.get(0))){
          timer.pause = System.nanoTime();
-         gameState++;
+         gameState = PLAY;
+       }else if (this.equals(pauseButtonList.get(0))){
+         gameState = TITLE;
+       }else if (this.equals(pauseButtonList.get(1))){
+         gameState = PLAY;
+         //implement retry
+         fireboy.reset();
+         watergirl.reset();
+       }else if (this.equals(pauseButtonList.get(2))){
+         gameState = PLAY;
+       }else if (this.equals(pauseButtonList.get(0))){
+         
        }
      }
    }

@@ -11,37 +11,45 @@ public final int WIN = 3;
 public final int LOSE = 4;
 public final float slidingTileThickness = 0.2;
 public boolean renderedMap = false;
-
 public int gameState = 0;
-public ArrayList<Button> buttonList= new ArrayList<Button>();
+public ArrayList<Button> titleButtonList= new ArrayList<Button>();
+public ArrayList<Button> pauseButtonList= new ArrayList<Button>();
+public ArrayList<Button> winButtonList= new ArrayList<Button>();
+public ArrayList<Button> loseButtonList= new ArrayList<Button>();
 public ArrayList<DoorTile> doorList= new ArrayList<DoorTile>();
 Player watergirl, fireboy;
 PImage[] waterAnimation, fireAnimation;
 boolean [] inputs = {false,false,false,false,false,false};
 Timer timer = new Timer();
 UI ui = new UI();
-
 Map map;
 
 void setup(){
-  //pixelDensity(2);
+  //pixelDensity(1);
   textSize(50);
   size(1, 1);
+  //textureMode(NORMAL);
   noStroke();
-  map = new Map(1);
+  map = new Map(1); //<>//
   windowResize((int)(scale*map.tileMap[0].length*Tile.size), (int)(scale*map.tileMap.length*Tile.size));
   map.render(true);
   watergirl = new Player(false, new Hitbox(new PVector(40,100), new PVector(10,10), true), waterAnimation);
   fireboy = new Player(true, new Hitbox(new PVector(80,100), new PVector(10,10), true), fireAnimation);
-  buttonList.add(new Button(400,200,500,240,color(#00FF00)));
+  titleButtonList.add(new Button(width/2,56 * height/100,width/10,height/30,color(#00FF00)));
+  pauseButtonList.add(new Button(40.5 * width/100,58 * height/100,width/12,height/16,color(#00FF00)));
+  pauseButtonList.add(new Button(64.5 * width/100,58 * height/100,width/12,height/16,color(#00FF00)));
+  pauseButtonList.add(new Button(52.5 * width/100,74 * height/100,width/11,height/16,color(#00FF00)));  
+  winButtonList.add(new Button(52.5 * width/100,78 * height/100,width/8.5,height/16,color(#00FF00)));
+  //pauseButtonList.add(new Button(width/2,56 * height/100,width/10,height/30,color(#00FF00)));
 }
 
 void draw(){
     if (gameState == TITLE){
+      renderedMap = false;
         background(255);
         image(loadImage("sprites/fireboyWallpaper2.jpg"),0,0,width,height);
-      for (int i = 0; i < buttonList.size(); i++){
-        buttonList.get(i).render("Play");
+      for (int i = 0; i < titleButtonList.size(); i++){
+        titleButtonList.get(i).render("");
       }
     }else if (gameState == PLAY){
       if (!renderedMap) {
@@ -76,14 +84,29 @@ void draw(){
       //}
       
     }else if (gameState == PAUSE){
-    //image();
+    image(loadImage("sprites/pauseScreen.png"),width/10, height/10,width/1.2,height/1.2);
+    renderedMap = false;
+    for (int i = 0; i < pauseButtonList.size(); i++){
+        pauseButtonList.get(i).render("");
+      }
     }else if (gameState == WIN){
-    //image();
+    image(loadImage("sprites/winScreen.png"),width/10, height/10,width/1.2,height/1.2);
     //System.out.println("win");
+    for (int i = 0; i < winButtonList.size(); i++){
+        winButtonList.get(i).render("");
+      }
     }else if (gameState == LOSE){
-    //image();
+    image(loadImage("sprites/loseScreen.png"),width/10, height/10,width/1.2,height/1.2);
+    for (int i = 0; i < loseButtonList.size(); i++){
+        loseButtonList.get(i).render("");
+      }
     }
 }
+
+//public static void reset(){
+//  watergirl = new Player(false, new Hitbox(new PVector(40,100), new PVector(10,10), true), waterAnimation);
+//  fireboy = new Player(true, new Hitbox(new PVector(80,100), new PVector(10,10), true), fireAnimation);
+//}
 
 
 void keyPressed(){
@@ -113,6 +136,12 @@ void keyPressed(){
   gameState++;
   gameState %= 5;
   }
+  //if(key == ESC && gameState == PLAY){
+  //  gameState = PAUSE;
+  //}
+  //if(key == ESC && gameState == PAUSE){
+  //  gameState = PLAY;
+  //}
 }
 
 void keyReleased(){
@@ -138,7 +167,21 @@ void keyReleased(){
 }
 
 void mouseClicked(){
-    for (int i = 0; i < buttonList.size(); i++){
-      buttonList.get(i).clicked();
+    if (gameState == TITLE){
+      for (int i = 0; i < titleButtonList.size(); i++){
+      titleButtonList.get(i).clicked();
+      }
+    }else if (gameState == PAUSE){
+      for (int i = 0; i < pauseButtonList.size(); i++){
+      pauseButtonList.get(i).clicked();
+      }
+    }else if (gameState == WIN){
+      for (int i = 0; i < winButtonList.size(); i++){
+      winButtonList.get(i).clicked();
+      }
+    }else if (gameState == LOSE){
+       for (int i = 0; i < loseButtonList.size(); i++){
+      loseButtonList.get(i).clicked();
+      }
     }
 }

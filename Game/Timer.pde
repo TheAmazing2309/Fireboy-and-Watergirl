@@ -18,6 +18,8 @@ public class Timer{
   }
   
   public void render(){
+    fill(255);
+    rect(width/2 - 80, 60,200,-50);
     getTime();
     fill(0);
     String text = "";
@@ -29,6 +31,11 @@ public class Timer{
     }else{
     text(text + (int) time/60 + " : " + (int)time % 60,width/2 - 70, 50);
     }
+  }
+  
+  public void resatrt(){
+  time = 0;
+  pausedTime = 0;
   }
   
 }
