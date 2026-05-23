@@ -1,3 +1,4 @@
+/*
 public class liquidTile extends Tile{
   public boolean opened = false;
   public boolean fire;
@@ -12,3 +13,4 @@ public class liquidTile extends Tile{
     rect(hitbox.position.x, hitbox.position.y, hitbox.size.x, hitbox.size.x);
   }
 }
+*/

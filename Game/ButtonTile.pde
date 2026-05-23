@@ -2,8 +2,8 @@ public class ButtonTile extends Tile{
   SlidingTile tileLink;
   public boolean openThisFrame;
   
-  public ButtonTile (Hitbox hitbox, PImage[] a, SlidingTile tileLink){
-    super(hitbox, a);
+  public ButtonTile (Hitbox h1, Hitbox h2, PImage[] a, SlidingTile tileLink){
+    super(h1, h2, a);
     this.tileLink = tileLink;
     openThisFrame = false;
   }
@@ -26,7 +26,7 @@ public class ButtonTile extends Tile{
   
   @Override public void render(){
    fill(0);
-   rect(hitbox.position.x,hitbox.position.y,hitbox.size.x, hitbox.size.y);
+   rect(renderHitbox.position.x,renderHitbox.position.y,renderHitbox.size.x, renderHitbox.size.y);
   }
   
 }
