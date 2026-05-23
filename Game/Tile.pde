@@ -11,7 +11,11 @@ public abstract class Tile{
   }
   
   public void render(){
-    if (animation == null) return;
+    if (animation == null) {
+      fill(255);
+      rect(hitbox.position.x, hitbox.position.y, hitbox.size.x, hitbox.size.y);
+      return;
+    }
     image(animation[animationState], hitbox.position.x, hitbox.position.y, hitbox.size.x, hitbox.size.y);
     animationState++;
     animationState%=animation.length;
