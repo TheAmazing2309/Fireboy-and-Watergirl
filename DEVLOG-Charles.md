@@ -22,5 +22,9 @@ I made a button class which will be used to change screens later on and do fucti
 ### 2026-05-20 - images
 I started to look for images/sprites to use in our game. 1 hour.
 
-### 2026-05-20 - images and button
+### 2026-05-21 - images and button
 I continued to look for images/sprites to use in our game and moved the button to where the play is. 1 hour.
+
+### 2026-05-22 - buttons and functions
+I added all the buttons and made the functions for all of them, but the reset fuction is not working and i dont know why. 2 hours.
+
