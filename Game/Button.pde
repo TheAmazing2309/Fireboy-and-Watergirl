@@ -52,6 +52,7 @@ public class Button{
        }else if (this.equals(loseButtonList.get(0))){
          gameState = PLAY;
          //implement retry
+         map.render(true);
          fireboy.reset();
          watergirl.reset();
          timer.restart();
