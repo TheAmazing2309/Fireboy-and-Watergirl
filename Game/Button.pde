@@ -33,6 +33,7 @@ public class Button{
      if (mouseX > x1 - x2 && mouseX < x1 + x2 && mouseY > y1 - y2 && mouseY < y1 + y2){
        if(this.equals(titleButtonList.get(0))){
          timer.pause = System.nanoTime();
+         timer.restart();
          gameState = PLAY;
        }else if (this.equals(pauseButtonList.get(0))){
          gameState = TITLE;
@@ -47,6 +48,7 @@ public class Button{
          //implement retry
        }else if (this.equals(pauseButtonList.get(2))){
          gameState = PLAY;
+         timer.restart();
          timer.pausedTime = (System.nanoTime() - pauseStart)/1000000000.0;
          timer.time -= timer.pausedTime;
        }else if (this.equals(winButtonList.get(0))){
@@ -58,9 +60,13 @@ public class Button{
          fireboy.reset();
          watergirl.reset();
          timer.restart();
-       }else if (this.equals(loseButtonList.get(0))){
+       }else if (this.equals(loseButtonList.get(1))){
          gameState = TITLE;
-       }else if (this.equals(loseButtonList.get(0))){
+         map.render(true);
+         fireboy.reset();
+         watergirl.reset();
+         timer.restart();
+       }else if (this.equals(loseButtonList.get(2))){
          //implemtnt skip after levels are created
        }
      }
