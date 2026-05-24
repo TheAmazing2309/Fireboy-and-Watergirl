@@ -9,7 +9,7 @@ public final int PLAY = 1;
 public final int PAUSE = 2;
 public final int WIN = 3;
 public final int LOSE = 4;
-public final float slidingTileThickness = 0.2;
+public final float slidingTileThickness = 0.4;
 public boolean renderedMap = false;
 public int gameState = 0;
 public ArrayList<Button> titleButtonList= new ArrayList<Button>();
@@ -30,7 +30,7 @@ void setup(){
   size(1, 1);
   //textureMode(NORMAL);
   noStroke();
-  map = new Map(1); //<>// //<>// //<>//
+  map = new Map(1); //<>// //<>// //<>// //<>//
   windowResize((int)(scale*map.tileMap[0].length*Tile.size), (int)(scale*map.tileMap.length*Tile.size));
   map.render(true);
   watergirl = new Player(false, new Hitbox(new PVector(40,100), new PVector(10,10), true), waterAnimation);
