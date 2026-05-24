@@ -25,7 +25,7 @@ UI ui = new UI();
 Map map;
 
 void setup(){
-  //pixelDensity(1);
+  pixelDensity(1);
   textSize(50);
   size(1, 1);
   //textureMode(NORMAL);
@@ -51,6 +51,7 @@ void setup(){
   loseButtonList.add(new Button(31 * width/100,70 * height/100,width/12,height/20,color(#00FF00), false));
   //SKIP
   loseButtonList.add(new Button(74 * width/100,70 * height/100,width/12,height/20,color(#00FF00), false));
+
 }
 
 void draw(){

@@ -1,14 +1,19 @@
-public class liquidTile extends Tile{
+public class LiquidTile extends Tile{
   public boolean opened = false;
-  public boolean fire;
+  public boolean fireAllergic;
+  public boolean waterAllergic;
 
   
-  public liquidTile(Hitbox hitbox, PImage[] a, boolean fire){
-    super(hitbox,a);
-    this.fire = fire;
+  public LiquidTile(Hitbox h1, Hitbox h2, PImage[] a, boolean fire, boolean water, boolean r){
+    super(h1, h2,a,r);
+    this.fireAllergic = fire;
+    this.waterAllergic = water;
   }
   
-  public void render(){
-    rect(hitbox.position.x, hitbox.position.y, hitbox.size.x, hitbox.size.x);
+  @Override public void render(){
+    if (fireAllergic && waterAllergic) fill(0,255,0, 100);
+    else if (waterAllergic) fill(255,0,0,100);
+    else fill(0,0,255,100);
+    rect(renderHitbox.position.x, renderHitbox.position.y, renderHitbox.size.x, renderHitbox.size.x);
   }
 }
