@@ -9,11 +9,14 @@ public class Timer{
   }
   
   public void getTime(){
-    time += (System.nanoTime() - pause)/1000000000.0;
+    
+    time = (System.nanoTime() - start - pausedTime)/1000000000.0;
+    //time += (System.nanoTime() - pause)/1000000000.0;
     //if (gameState == PLAY){
     ////  pausedTime += System.nanoTime() - pause;
     //  System.out.println(time);
     //}
+    pausedTime += System.nanoTime() - pause;
     pause = System.nanoTime();
   }
   
