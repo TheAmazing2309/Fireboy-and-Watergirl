@@ -18,20 +18,20 @@ public int level = 1;
 public boolean L1,L2,L3,L4,L5,L6,L7;
 public final color compleate = #00FF00;
 public final color incompleate = #FF0000;
-public final Button B1 = new Button(5 * width/10,4 * height/10,20 * width/100,20 * height/100,incompleate, true);
-public final Button B2 = new Button(10 * width/10,4 * height/10,20 * width/100,20 * height/100,incompleate, true);
-public final Button B3 = new Button(15 * width/10,4 * height/10,20 * width/100,20 * height/100,incompleate, true);
-public final Button B4 = new Button(20 * width/10,4 * height/10,20 * width/100,20 * height/100,incompleate, true);
-public final Button B5 = new Button(25 * width/10,4 * height/10,20 * width/100,20 * height/100,incompleate, true);
-public final Button B6 = new Button(30 * width/10,4 * height/10,20 * width/100,20 * height/100,incompleate, true);
-public final Button B7 = new Button(35 * width/10,4 * height/10,20 * width/100,20 * height/100,incompleate, true);
+public Button B1 = new Button(5 * width/10,4 * height/10,20 * width/100,20 * height/100,incompleate, true);
+public Button B2 = new Button(10 * width/10,4 * height/10,20 * width/100,20 * height/100,incompleate, true);
+public Button B3 = new Button(15 * width/10,4 * height/10,20 * width/100,20 * height/100,incompleate, true);
+public Button B4 = new Button(20 * width/10,4 * height/10,20 * width/100,20 * height/100,incompleate, true);
+public Button B5 = new Button(25 * width/10,4 * height/10,20 * width/100,20 * height/100,incompleate, true);
+public Button B6 = new Button(30 * width/10,4 * height/10,20 * width/100,20 * height/100,incompleate, true);
+public Button B7 = new Button(35 * width/10,4 * height/10,20 * width/100,20 * height/100,incompleate, true);
 public ArrayList<Button> levelList= new ArrayList<Button>();
 public ArrayList<Button> titleButtonList= new ArrayList<Button>();
 public ArrayList<Button> pauseButtonList= new ArrayList<Button>();
 public ArrayList<Button> winButtonList= new ArrayList<Button>();
 public ArrayList<Button> loseButtonList= new ArrayList<Button>();
 public ArrayList<DoorTile> doorList= new ArrayList<DoorTile>();
-Player watergirl, fireboy; //<>//
+Player watergirl, fireboy; //<>// //<>//
 PImage[] waterAnimation, fireAnimation;
 boolean [] inputs = {false,false,false,false,false,false};
 Timer timer = new Timer();
@@ -239,6 +239,10 @@ void mouseClicked(){
     }else if (gameState == LOSE){
        for (int i = 0; i < loseButtonList.size(); i++){
       loseButtonList.get(i).clicked();
+      }
+    }else if (gameState == LEVELS){
+       for (int i = 0; i < levelList.size(); i++){
+      levelList.get(i).clicked();
       }
     }
 }

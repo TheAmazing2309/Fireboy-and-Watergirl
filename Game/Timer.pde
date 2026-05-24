@@ -36,6 +36,7 @@ public class Timer{
   }
   
   public void restart(){
+  textSize(50);
   time = 0;
   pausedTime = 0;
   }
