@@ -28,21 +28,12 @@ public class Player{
     prevX = hitbox.position.x;
     prevY = hitbox.position.y;
  }
-<<<<<<< HEAD
-  //<>// //<>// //<>// //<>//
- public void applyInputs(){ //<>// //<>//
-     prevX = hitbox.position.x;
-   prevY = hitbox.position.y; //<>// //<>// //<>// //<>//
-   if (!fire){ //<>// //<>//
-     if (inputs[0] && canJump && velocity.y == 0){
-=======
   //<>// //<>//
- public void applyInputs(){ //<>// //<>// //<>//
-     prevX = hitbox.position.x; //<>//
+ public void applyInputs(){ //<>// //<>// //<>// //<>//
+     prevX = hitbox.position.x; //<>// //<>//
    prevY = hitbox.position.y; //<>// //<>//
-   if (!fire){ //<>// //<>// //<>//
-     if (inputs[0] && canJump && velocity.y == 0){ //<>//
->>>>>>> main
+   if (!fire){ //<>// //<>// //<>// //<>//
+     if (inputs[0] && canJump && velocity.y == 0){ //<>// //<>//
      this.apply(jump);
      canJump = false;
      }

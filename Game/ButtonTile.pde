@@ -3,7 +3,7 @@ public class ButtonTile extends Tile{
   public boolean openThisFrame;
   public int c;
   public color[] colors = {#B3B004, #2BB222, #A922B2, #0441B3, #B24922, #BFBFBF};
-  
+ 
   public ButtonTile (Hitbox h1, Hitbox h2, PImage[] a, SlidingTile tileLink, boolean r, int c){
     super(h1, h2, a, r);
     this.tileLink = tileLink;

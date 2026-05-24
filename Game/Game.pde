@@ -9,16 +9,29 @@ public final int PLAY = 1;
 public final int PAUSE = 2;
 public final int WIN = 3;
 public final int LOSE = 4;
+public final int LEVELS = 5;
 public final float slidingTileThickness = 0.4;
 public boolean renderedMap = false;
 public int gameState = 0;
 public long pauseStart;
+public int level = 1;  
+public boolean L1,L2,L3,L4,L5,L6,L7;
+public final color compleate = #00FF00;
+public final color incompleate = #FF0000;
+public final Button B1 = new Button(5 * width/10,4 * height/10,20 * width/100,20 * height/100,incompleate, true);
+public final Button B2 = new Button(10 * width/10,4 * height/10,20 * width/100,20 * height/100,incompleate, true);
+public final Button B3 = new Button(15 * width/10,4 * height/10,20 * width/100,20 * height/100,incompleate, true);
+public final Button B4 = new Button(20 * width/10,4 * height/10,20 * width/100,20 * height/100,incompleate, true);
+public final Button B5 = new Button(25 * width/10,4 * height/10,20 * width/100,20 * height/100,incompleate, true);
+public final Button B6 = new Button(30 * width/10,4 * height/10,20 * width/100,20 * height/100,incompleate, true);
+public final Button B7 = new Button(35 * width/10,4 * height/10,20 * width/100,20 * height/100,incompleate, true);
+public ArrayList<Button> levelList= new ArrayList<Button>();
 public ArrayList<Button> titleButtonList= new ArrayList<Button>();
 public ArrayList<Button> pauseButtonList= new ArrayList<Button>();
 public ArrayList<Button> winButtonList= new ArrayList<Button>();
 public ArrayList<Button> loseButtonList= new ArrayList<Button>();
 public ArrayList<DoorTile> doorList= new ArrayList<DoorTile>();
-Player watergirl, fireboy;
+Player watergirl, fireboy; //<>//
 PImage[] waterAnimation, fireAnimation;
 boolean [] inputs = {false,false,false,false,false,false};
 Timer timer = new Timer();
@@ -31,7 +44,7 @@ void setup(){
   size(1, 1);
   //textureMode(NORMAL);
   noStroke();
-  map = new Map(1); //<>// //<>// //<>// //<>//
+  map = new Map(level); //<>// //<>// //<>// //<>//
   windowResize((int)(scale*map.tileMap[0].length*Tile.size), (int)(scale*map.tileMap.length*Tile.size));
   map.render(true);
   watergirl = new Player(false, new Hitbox(new PVector(40,100), new PVector(10,10), true), waterAnimation);
@@ -52,7 +65,14 @@ void setup(){
   loseButtonList.add(new Button(31 * width/100,70 * height/100,width/12,height/20,color(#00FF00), false));
   //SKIP
   loseButtonList.add(new Button(74 * width/100,70 * height/100,width/12,height/20,color(#00FF00), false));
-
+  //LEVELS
+  levelList.add(B1);
+  levelList.add(B2);
+  levelList.add(B3);
+  levelList.add(B4);
+  levelList.add(B5);
+  levelList.add(B6);
+  levelList.add(B7);
 }
 
 void draw(){
@@ -112,6 +132,21 @@ void draw(){
     for (int i = 0; i < loseButtonList.size(); i++){
         loseButtonList.get(i).render();
       }
+    }else if (gameState == LEVELS){
+    background(255);
+    fill(255);
+      for (int i = 0; i < levelList.size(); i++){
+        levelList.get(i).render();
+      }
+    fill(0);
+    textSize(30);
+    text("1",3 * width/100,10 * height/100);
+    text("2",6.5 * width/100,10 * height/100);
+    text("3",10 * width/100,10 * height/100);
+    text("4",13.5 * width/100,10 * height/100);
+    text("5",17 * width/100,10 * height/100);
+    text("6",20.5 * width/100,10 * height/100);
+    text("7",24 * width/100,10 * height/100);
     }
 }
 
@@ -151,7 +186,7 @@ void keyPressed(){
   }  
   if (key == 'l'){
   gameState++;
-  gameState %= 5;
+  gameState %= 6;
   }
   if(key == ESC && gameState == PLAY){
     key = 0;

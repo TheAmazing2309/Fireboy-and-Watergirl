@@ -52,7 +52,7 @@ public class Button{
          timer.pausedTime = (System.nanoTime() - pauseStart)/1000000000.0;
          timer.time -= timer.pausedTime;
        }else if (this.equals(winButtonList.get(0))){
-         gameState = TITLE;
+         gameState = LEVELS;
        }else if (this.equals(loseButtonList.get(0))){
          gameState = PLAY;
          //implement retry
@@ -68,6 +68,27 @@ public class Button{
          timer.restart();
        }else if (this.equals(loseButtonList.get(2))){
          //implemtnt skip after levels are created
+       }else if (this.equals(levelList.get(0))){
+         level = 1;
+         gameState = PLAY;
+       }else if (this.equals(levelList.get(1)) && L1){
+         level = 2;
+         gameState = PLAY;
+       }else if (this.equals(levelList.get(2)) && L2){
+         level = 3;
+         gameState = PLAY;
+       }else if (this.equals(levelList.get(3)) && L3){
+         level = 4;
+         gameState = PLAY;
+       }else if (this.equals(levelList.get(4)) && L4){
+         level = 5;
+         gameState = PLAY;
+       }else if (this.equals(levelList.get(5)) && L5){
+         level = 6;
+         gameState = PLAY;
+       }else if (this.equals(levelList.get(6)) && L6){
+         level = 7;
+         gameState = PLAY;
        }
      }
    }
