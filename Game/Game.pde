@@ -30,7 +30,7 @@ void setup(){
   size(1, 1);
   //textureMode(NORMAL);
   noStroke();
-  map = new Map(1); //<>// //<>//
+  map = new Map(1); //<>// //<>// //<>//
   windowResize((int)(scale*map.tileMap[0].length*Tile.size), (int)(scale*map.tileMap.length*Tile.size));
   map.render(true);
   watergirl = new Player(false, new Hitbox(new PVector(40,100), new PVector(10,10), true), waterAnimation);
@@ -142,7 +142,12 @@ void keyPressed(){
   if (key == ' '){
     System.out.println("water: " + watergirl.velocity.x + " fire: " + fireboy.velocity.x);
     System.out.println(inputs[0] + " " + inputs[1] + " " + inputs[2] + " " + inputs[3] + " " + inputs[4] + " " + inputs[5]);
+    System.out.println(timer.time);
+    System.out.println(watergirl.hitbox.position.x);
   }
+  if (key == 'r'){
+  watergirl.reset();
+  }  
   if (key == 'l'){
   gameState++;
   gameState %= 5;

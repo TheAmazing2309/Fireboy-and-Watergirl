@@ -13,14 +13,15 @@ public class Player{
   float prevY;
   
   //original info 
-  Hitbox originalHitbox;
+  float originalHitboxX,originalHitboxY ;
   PImage[] originalAnimation;
   
   public Player(boolean fire, Hitbox hitbox, PImage[] animation){   
     this.fire = fire;
     this.hitbox = hitbox;
     this.animation = animation;
-    originalHitbox = this.hitbox.copy();
+    originalHitboxX = hitbox.position.x;
+    originalHitboxY = hitbox.position.y;
     originalAnimation = animation;
     velocity = new PVector(0,0);
     acceleration = new PVector(0,0);
@@ -28,10 +29,10 @@ public class Player{
     prevX = hitbox.position.x;
     prevY = hitbox.position.y;
  }
- 
+  //<>// //<>//
  public void applyInputs(){ //<>// //<>//
      prevX = hitbox.position.x;
-   prevY = hitbox.position.y;
+   prevY = hitbox.position.y; //<>// //<>//
    if (!fire){ //<>// //<>//
      if (inputs[0] && canJump && velocity.y == 0){
      this.apply(jump);
@@ -91,14 +92,14 @@ public class Player{
       }
    }
    if (dir == Top){
-     this.hitbox.position.y = other.collisionsHitbox.position.y + other.collisionsHitbox.size.y;
+     this.hitbox.position.y = other.collisionsHitbox.position.y + other.collisionsHitbox.size.y + 1;
      this.velocity = new PVector(0, 0);
    }
    if (dir == Left){
-     this.hitbox.position.x = other.collisionsHitbox.position.x + other.collisionsHitbox.size.x;
+     this.hitbox.position.x = other.collisionsHitbox.position.x + other.collisionsHitbox.size.x + 1;
    }
    if (dir == Right){
-     this.hitbox.position.x = other.collisionsHitbox.position.x - this.hitbox.size.x;
+     this.hitbox.position.x = other.collisionsHitbox.position.x - this.hitbox.size.x - 1;
    }
  }
  
@@ -143,7 +144,8 @@ public class Player{
  }
  
  public void reset(){
-    hitbox = originalHitbox;
+    hitbox.position.x = originalHitboxX;
+    hitbox.position.y = originalHitboxY;
     animation = originalAnimation;
     velocity = new PVector(0,0);
     acceleration = new PVector(0,0);
