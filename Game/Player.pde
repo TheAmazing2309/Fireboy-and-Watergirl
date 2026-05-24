@@ -1,6 +1,5 @@
 public class Player{
   public Hitbox hitbox;
-  
   PVector jump = new PVector(0, -9);
   PVector gravity = new PVector(0, .5);
   float speed = 2;
@@ -29,12 +28,21 @@ public class Player{
     prevX = hitbox.position.x;
     prevY = hitbox.position.y;
  }
-  //<>// //<>// //<>//
+<<<<<<< HEAD
+  //<>// //<>// //<>// //<>//
  public void applyInputs(){ //<>// //<>//
      prevX = hitbox.position.x;
-   prevY = hitbox.position.y; //<>// //<>// //<>//
+   prevY = hitbox.position.y; //<>// //<>// //<>// //<>//
    if (!fire){ //<>// //<>//
      if (inputs[0] && canJump && velocity.y == 0){
+=======
+  //<>// //<>//
+ public void applyInputs(){ //<>// //<>// //<>//
+     prevX = hitbox.position.x; //<>//
+   prevY = hitbox.position.y; //<>// //<>//
+   if (!fire){ //<>// //<>// //<>//
+     if (inputs[0] && canJump && velocity.y == 0){ //<>//
+>>>>>>> main
      this.apply(jump);
      canJump = false;
      }
@@ -128,8 +136,10 @@ public class Player{
    }
    checkDoor(map.doors[0]);
    checkDoor(map.doors[1]);
-   if (map.doors[0].opened && map.doors[1].opened) gameState = LOSE;
+
+   if (map.doors[0].opened && map.doors[1].opened) gameState = WIN;
    for (GemTile gem : map.gems) gem.detectCollision(this);
+
  }
  
  public void checkDoor(DoorTile a){
