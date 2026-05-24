@@ -6,6 +6,9 @@ public class Map{
   public Tile[][] tileMap;
   public ButtonTile[] buttons;
   public DoorTile[] doors;
+  public ArrayList<GemTile> gems;
+  public int waterGemsCollected = 0;
+  public int fireGemsCollected = 0;
   
 
   public Map(int level){
@@ -14,6 +17,7 @@ public class Map{
     levelWidth = lines[0].length();
     levelHeight = lines.length;
     buttons = new ButtonTile[10];
+    gems = new ArrayList<GemTile>();
     doors = new DoorTile[2];
     SlidingTile[] slidingTileTemp = new SlidingTile[10];
     //System.out.println(levelHeight + "x" + levelWidth);
@@ -60,8 +64,13 @@ public class Map{
         else if (el == 'z' || el == 'y' || el == 'x'){
           tileMap[i][j] = new LiquidTile(new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), true), new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), false), null, (el=='z'||el=='x'), (el=='z'||el=='y'), true);
         }
+        else if (el == '>' || el == '<'){
+          tileMap[i][j] = new GemTile(new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), false), new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), false), ((el=='<')?null:new PImage[]{loadImage("sprites/WaterGem.png")}), true, el=='<');
+          gems.add((GemTile)tileMap[i][j]);
+      }
         else throw new IllegalArgumentException("Illegal char in level " + level + " " + el);
         }
+        
       }
       println(Arrays.toString(slidingTileTemp));
       println(Arrays.toString(buttons));
