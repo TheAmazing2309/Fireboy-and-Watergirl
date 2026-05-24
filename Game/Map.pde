@@ -5,6 +5,8 @@ public class Map{
   private int levelHeight;
   public Tile[][] tileMap;
   public ButtonTile[] buttons;
+  public DoorTile[] doors;
+  
 
   public Map(int level){
     String[] lines = loadStrings("levels/"+level+".txt");
@@ -12,6 +14,7 @@ public class Map{
     levelWidth = lines[0].length();
     levelHeight = lines.length;
     buttons = new ButtonTile[10];
+    doors = new DoorTile[2];
     SlidingTile[] slidingTileTemp = new SlidingTile[10];
     //System.out.println(levelHeight + "x" + levelWidth);
     tileMap = new Tile[levelHeight][levelWidth];
@@ -20,32 +23,42 @@ public class Map{
       //System.out.println(line + " " + line.length());
       for (int j = 0; j < levelWidth; j++){ // 0-9 button codes, )-( lever codes
         char el = line.charAt(j);
-        if (el == ' ') tileMap[i][j] = new WallTile(new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), false), null);
-        else if (el == '#') tileMap[i][j] = new WallTile(new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), true), new PImage[]{loadImage("sprites/test.png")});
+        if (el == ' ') tileMap[i][j] = new WallTile(new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), false), new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), false), new PImage[]{loadImage("sprites/BackgroundTile.png")}, true);
+        else if (el == '#') tileMap[i][j] = new WallTile(new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), true), new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), false), new PImage[]{loadImage("sprites/PlatformTile.png")}, false);
         else if (el >= '0' && el <= '9'){ 
-          tileMap[i][j] = new ButtonTile(new Hitbox(new PVector(j * tileSize, i * tileSize + tileSize * 0.8), new PVector(tileSize, tileSize * 0.2), true), null, null);
+          tileMap[i][j] = new ButtonTile(new Hitbox(new PVector(j * tileSize, i * tileSize + tileSize * 0.8), new PVector(tileSize, tileSize * 0.2), true), new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), true), null, null, true);
           buttons[el-'0'] = (ButtonTile)tileMap[i][j];
         }
-        else if ((el >= 'a' && el <= 'j') || (el >= 'A' && el <= 'J') || (el >= 'k' && el <= 't') || (el >= 'K' && el <= 'T')){ 
+        else if ((el >= 'a' && el <= 'j') || (el >= 'A' && el <= 'J')){ 
           Tile temp;
           if (el >= 'a' && el <= 'j') {//Left
-            temp = new SlidingTile(new Hitbox(new PVector(j * tileSize, i*tileSize+tileSize*((i>0&&lines[i-1].charAt(j)==' ')?0:1-slidingTileThickness)), new PVector(tileSize, tileSize * slidingTileThickness), true), null, Left);
+            temp = new SlidingTile(new Hitbox(new PVector(j * tileSize, i * tileSize + tileSize/2 - slidingTileThickness/2), new PVector(tileSize, tileSize * slidingTileThickness), true), new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), false), null, Left, true);
             el -= 'a';
           }
           else if (el >= 'A' && el <= 'J'){ //Right
-            temp = new SlidingTile(new Hitbox(new PVector(j * tileSize, i*tileSize+tileSize*((i>0&&lines[i-1].charAt(j)==' ')?0:1-slidingTileThickness)), new PVector(tileSize, tileSize * slidingTileThickness), true), null, Right);
+            temp = new SlidingTile(new Hitbox(new PVector(j * tileSize, i * tileSize + tileSize/2 - slidingTileThickness/2), new PVector(tileSize, tileSize * slidingTileThickness), true), new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), false), null, Right, true);
             el -= 'A';
           }
           else if (el >= 'k' && el <= 't'){ //Top
-            temp = new SlidingTile(new Hitbox(new PVector(j * tileSize+tileSize*((j>0&&lines[i].charAt(j)==' ')?0:1-slidingTileThickness), i * tileSize), new PVector(tileSize * slidingTileThickness, tileSize), true), null, Top);
+            temp = new SlidingTile(new Hitbox(new PVector(j * tileSize + tileSize/2 -slidingTileThickness/2, i * tileSize), new PVector(tileSize * slidingTileThickness, tileSize), true), new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), false), null, Top, true);
             el -= 'k';
           }
           else { //Bottom
-            temp = new SlidingTile(new Hitbox(new PVector(j * tileSize+tileSize*((j>0&&lines[i].charAt(j)==' ')?0:1-slidingTileThickness), i * tileSize), new PVector(tileSize * slidingTileThickness, tileSize), true), null, Bottom);
+            temp = new SlidingTile(new Hitbox(new PVector(j * tileSize + tileSize/2 -slidingTileThickness/2, i * tileSize), new PVector(tileSize * slidingTileThickness, tileSize), true), new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), false), null, Bottom, true);
             el -= 'K';
           }
           tileMap[i][j] = temp;
           slidingTileTemp[el] = (SlidingTile)temp;
+        }
+        else if (el == ']' || el == '['){
+          boolean fire = (el == ']');
+          int index = 0;
+          if (doors[0] != null) index = 1;
+          doors[index] = new DoorTile(new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), false), new Hitbox(new PVector(j * tileSize, (i+1) * tileSize - 48), new PVector(48, 48), false), (fire?new PImage[]{loadImage("sprites/FireboyDoor.png")}:new PImage[]{loadImage("sprites/WatergirlDoor.png")}), fire, true);
+          tileMap[i][j] = new WallTile(new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), false), new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), false), new PImage[]{loadImage("sprites/BackgroundTile.png")}, true);
+        }
+        else if (el == 'z' || el == 'y' || el == 'x'){
+          tileMap[i][j] = new LiquidTile(new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), true), new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), false), null, (el=='z'||el=='x'), (el=='z'||el=='y'), true);
         }
         else throw new IllegalArgumentException("Illegal char in level " + level);
         }
@@ -65,12 +78,28 @@ public class Map{
     for (int i = 0; i < levelHeight; i++){
       for (int j = 0; j < levelWidth; j++){
         if (all) tileMap[i][j].render();
-        if (!all && tileMap[i][j].animation == null){
+        if (!all && tileMap[i][j].renderEveryFrame && !(tileMap[i][j] instanceof WallTile)){
           //println(tileMap[i][j]);
           tileMap[i][j].render();
         }
       }
     }
+   for (int k = 0; k <=1 && !all; k++){
+     Player temp;
+     if (k==0) temp = fireboy;
+     else temp = watergirl;
+     int startX = Math.max(0, (int)temp.hitbox.position.x/(Tile.size*scale)-1);
+     int startY = Math.max(0, (int)temp.hitbox.position.y/(Tile.size*scale)-1);
+     int endX = Math.min(map.tileMap[0].length - 1,(int)(temp.hitbox.position.x+temp.hitbox.size.x)/(Tile.size*scale) + 1);
+     int endY = Math.min(map.tileMap.length - 1,(int)(temp.hitbox.position.y+temp.hitbox.size.y)/(Tile.size*scale) + 1);
+     for (int i = startY; i <= endY; i++){
+       for (int j = startX; j <= endX; j++){
+         if ((tileMap[i][j] instanceof WallTile) && tileMap[i][j].renderEveryFrame) tileMap[i][j].render();
+       }
+     }
+   }
+   doors[0].render();
+   doors[1].render();
   }
   
   public void resetButtons(){
