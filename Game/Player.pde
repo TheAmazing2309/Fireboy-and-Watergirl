@@ -13,14 +13,15 @@ public class Player{
   float prevY;
   
   //original info 
-  Hitbox originalHitbox;
+  float originalHitboxX,originalHitboxY ;
   PImage[] originalAnimation;
   
   public Player(boolean fire, Hitbox hitbox, PImage[] animation){   
     this.fire = fire;
     this.hitbox = hitbox;
     this.animation = animation;
-    originalHitbox = this.hitbox.copy();
+    originalHitboxX = hitbox.position.x;
+    originalHitboxY = hitbox.position.y;
     originalAnimation = animation;
     velocity = new PVector(0,0);
     acceleration = new PVector(0,0);
@@ -28,10 +29,10 @@ public class Player{
     prevX = hitbox.position.x;
     prevY = hitbox.position.y;
  }
- 
+  //<>//
  public void applyInputs(){ //<>// //<>//
      prevX = hitbox.position.x;
-   prevY = hitbox.position.y;
+   prevY = hitbox.position.y; //<>//
    if (!fire){ //<>// //<>//
      if (inputs[0] && canJump && velocity.y == 0){
      this.apply(jump);
@@ -130,7 +131,8 @@ public class Player{
  }
  
  public void reset(){
-    hitbox = originalHitbox;
+    hitbox.position.x = originalHitboxX;
+    hitbox.position.y = originalHitboxY;
     animation = originalAnimation;
     velocity = new PVector(0,0);
     acceleration = new PVector(0,0);

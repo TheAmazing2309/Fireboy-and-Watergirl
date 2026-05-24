@@ -36,12 +36,15 @@ public class Button{
          gameState = PLAY;
        }else if (this.equals(pauseButtonList.get(0))){
          gameState = TITLE;
-       }else if (this.equals(pauseButtonList.get(1))){
-         gameState = PLAY;
-         //implement retry
          fireboy.reset();
          watergirl.reset();
          timer.restart();
+       }else if (this.equals(pauseButtonList.get(1))){
+         gameState = PLAY;
+         fireboy.reset();
+         watergirl.reset();
+         timer.restart();
+         //implement retry
        }else if (this.equals(pauseButtonList.get(2))){
          gameState = PLAY;
        }else if (this.equals(winButtonList.get(0))){
