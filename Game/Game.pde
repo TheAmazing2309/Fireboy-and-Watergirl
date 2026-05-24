@@ -12,6 +12,7 @@ public final int LOSE = 4;
 public final float slidingTileThickness = 0.2;
 public boolean renderedMap = false;
 public int gameState = 0;
+public long pauseStart;
 public ArrayList<Button> titleButtonList= new ArrayList<Button>();
 public ArrayList<Button> pauseButtonList= new ArrayList<Button>();
 public ArrayList<Button> winButtonList= new ArrayList<Button>();
@@ -154,10 +155,13 @@ void keyPressed(){
   }
   if(key == ESC && gameState == PLAY){
     key = 0;
+    pauseStart = System.nanoTime();
     gameState = PAUSE;
   }
   if(key == ESC && gameState == PAUSE){
     key = 0;
+    timer.pausedTime = (System.nanoTime() - pauseStart)/1000000000.0;
+    timer.time -= timer.pausedTime;
     gameState = PLAY;
   }
 }

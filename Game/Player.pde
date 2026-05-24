@@ -128,7 +128,7 @@ public class Player{
    }
    checkDoor(map.doors[0]);
    checkDoor(map.doors[1]);
-   if (map.doors[0].opened && map.doors[1].opened) gameState = LOSE;
+   if (map.doors[0].opened && map.doors[1].opened) gameState = WIN;
  }
  
  public void checkDoor(DoorTile a){
