@@ -1,6 +1,5 @@
 public class Player{
   public Hitbox hitbox;
-  
   PVector jump = new PVector(0, -9);
   PVector gravity = new PVector(0, .5);
   float speed = 2;
@@ -30,11 +29,11 @@ public class Player{
     prevY = hitbox.position.y;
  }
   //<>// //<>//
- public void applyInputs(){ //<>// //<>//
-     prevX = hitbox.position.x;
+ public void applyInputs(){ //<>// //<>// //<>//
+     prevX = hitbox.position.x; //<>//
    prevY = hitbox.position.y; //<>// //<>//
-   if (!fire){ //<>// //<>//
-     if (inputs[0] && canJump && velocity.y == 0){
+   if (!fire){ //<>// //<>// //<>//
+     if (inputs[0] && canJump && velocity.y == 0){ //<>//
      this.apply(jump);
      canJump = false;
      }
@@ -128,7 +127,7 @@ public class Player{
    }
    checkDoor(map.doors[0]);
    checkDoor(map.doors[1]);
-   if (map.doors[0].opened && map.doors[1].opened) gameState = LOSE;
+   if (map.doors[0].opened && map.doors[1].opened) gameState = WIN;
  }
  
  public void checkDoor(DoorTile a){

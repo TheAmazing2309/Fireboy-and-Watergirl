@@ -9,8 +9,9 @@ public class Timer{
   }
   
   public void getTime(){
-    //time += (System.nanoTime() - start - pausedTime)/1000000000.0;
+    
     time += (System.nanoTime() - pause)/1000000000.0;
+    //time += (System.nanoTime() - pause)/1000000000.0;
     //if (gameState == PLAY){
     ////  pausedTime += System.nanoTime() - pause;
     //  System.out.println(time);
@@ -21,7 +22,7 @@ public class Timer{
   
   public void render(){
     fill(255);
-    rect(width/2 - 80, 60,160,-50);
+    rect(width/2 - 80, 60,150,-50);
     getTime();
     fill(0);
     String text = "";
