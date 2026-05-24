@@ -2,13 +2,17 @@ public class SlidingTile extends Tile{
   
   public int direction;
   
-  private int openSpeed = 5;
+  private int openSpeed = 10;
   private int positionAt = 0;
   
+  public int c;
+  public color[] colors = {#B3B004, #2BB222, #A922B2, #0441B3, #B24922, #BFBFBF};
   
-  public SlidingTile(Hitbox h1, Hitbox h2, PImage[] a, int direction, boolean r){
+  
+  public SlidingTile(Hitbox h1, Hitbox h2, PImage[] a, int direction, boolean r, int c){
     super(h1, h2, a, r);
     this.direction = direction;
+    this.c=c;
   }
   
   public boolean otkroy(){
@@ -48,10 +52,12 @@ public class SlidingTile extends Tile{
   }
   
   @Override public void render(){
-    fill(255);
-    println("THIS SHOULD NOT BE IN THE FINAL PRODUCT!!");
-    rect(renderHitbox.position.x,renderHitbox.position.y,renderHitbox.size.x, renderHitbox.size.y);
-    fill(0);
+    //fill(255);
+    //println("THIS SHOULD NOT BE IN THE FINAL PRODUCT!!");
+    image(loadImage("sprites/BackgroundTile.png"), this.renderHitbox.position.x, this.renderHitbox.position.y, map.tileSize, map.tileSize);
+    fill(#CCCCCC);
     rect(collisionsHitbox.position.x, collisionsHitbox.position.y, collisionsHitbox.size.x, collisionsHitbox.size.y);
+    fill(colors[c]);
+    rect(collisionsHitbox.position.x+3, collisionsHitbox.position.y+3, collisionsHitbox.size.x-6, collisionsHitbox.size.y-6);
   }
 }

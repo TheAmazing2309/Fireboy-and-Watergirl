@@ -28,3 +28,5 @@ I continued to look for images/sprites to use in our game and moved the button t
 ### 2026-05-22 - buttons and functions
 I added all the buttons and made the functions for all of them, but the reset fuction is not working and i dont know why. 2 hours.
 
+### 2026-05-23 - timer bugs and reseting
+I fixed the timer not restarting when retrying and I fixed the timer not pausing when the game is paused. I also fixed the players not respawing in the start locatiosn instread of there current locations when the game restarts. Also updated UML. 3 hours.
