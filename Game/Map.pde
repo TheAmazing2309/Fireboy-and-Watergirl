@@ -34,7 +34,7 @@ public class Map{
           tileMap[i][j] = new ButtonTile(new Hitbox(new PVector(j * tileSize, i * tileSize + tileSize * 0.8), new PVector(tileSize, tileSize * 0.2), true), new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), true), null, null, true, el-'0');
           buttons[el-'0'] = (ButtonTile)tileMap[i][j];
         }
-        else if ((el >= 'a' && el <= 'j') || (el >= 'A' && el <= 'J')){ 
+        else if ((el >= 'a' && el <= 'j') || (el >= 'A' && el <= 'J') || (el >= 'k' && el <= 't') || (el >= 'K' && el <= 'T')){ 
           Tile temp;
           if (el >= 'a' && el <= 'j') {//Left
           el -= 'a';
