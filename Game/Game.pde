@@ -31,7 +31,7 @@ public ArrayList<Button> titleButtonList= new ArrayList<Button>();
 public ArrayList<Button> pauseButtonList= new ArrayList<Button>();
 public ArrayList<Button> winButtonList= new ArrayList<Button>();
 public ArrayList<Button> loseButtonList= new ArrayList<Button>();
-public ArrayList<DoorTile> doorList= new ArrayList<DoorTile>(); //<>// //<>// //<>//
+public ArrayList<DoorTile> doorList= new ArrayList<DoorTile>(); //<>// //<>// //<>// //<>//
 Player watergirl, fireboy; //<>//
 PImage[] waterAnimation, fireAnimation;
 boolean [] inputs = {false,false,false,false,false,false};
@@ -163,13 +163,13 @@ void draw(){
 
 
 void keyPressed(){
-  if (key == 'w'){
+  if (key == 'w' || key == 'W'){
     inputs[0] = true;
   }
-  if (key == 'a'){
+  if (key == 'a' || key == 'A'){
     inputs[1] = true;
   }
-  if (key == 'd'){
+  if (key == 'd'  || key == 'D'){
     inputs[2] = true;
   }
   if (keyCode == UP){
@@ -182,14 +182,11 @@ void keyPressed(){
     inputs[5] = true;
   }
   if (key == ' '){
-    System.out.println("water: " + watergirl.velocity.x + " fire: " + fireboy.velocity.x);
-    System.out.println(inputs[0] + " " + inputs[1] + " " + inputs[2] + " " + inputs[3] + " " + inputs[4] + " " + inputs[5]);
-    System.out.println(timer.time);
-    System.out.println(watergirl.hitbox.position.x);
+    ////System.out.println("water: " + watergirl.velocity.x + " fire: " + fireboy.velocity.x);
+    //System.out.println(inputs[0] + " " + inputs[1] + " " + inputs[2] + " " + inputs[3] + " " + inputs[4] + " " + inputs[5]);
+    //System.out.println(timer.time);
+    //System.out.println(watergirl.hitbox.position.x);
   }
-  if (key == 'r'){
-  watergirl.reset();
-  }  
   if (key == 'l'){
   gameState++;
   gameState %= 7;

@@ -19,7 +19,6 @@ public class ButtonTile extends Tile{
     try{
     tileLink.zakroy();
     }catch (NullPointerException e){
-      e.printStackTrace();
     }
   }
   

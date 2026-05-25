@@ -29,11 +29,11 @@ public class Player{
     prevY = hitbox.position.y;
  }
   //<>// //<>// //<>// //<>// //<>//
- public void applyInputs(){ //<>// //<>// //<>//
-     prevX = hitbox.position.x; //<>//
+ public void applyInputs(){ //<>// //<>// //<>// //<>//
+     prevX = hitbox.position.x; //<>// //<>//
    prevY = hitbox.position.y; //<>// //<>// //<>// //<>// //<>//
-   if (!fire){ //<>// //<>// //<>//
-     if (inputs[0] && canJump && velocity.y == 0){ //<>//
+   if (!fire){ //<>// //<>// //<>// //<>//
+     if (inputs[0] && canJump && velocity.y == 0){ //<>// //<>//
      this.apply(jump);
      canJump = false;
      }
@@ -144,10 +144,10 @@ public class Player{
    //println(Math.pow(this.hitbox.position.x - a.collisionsHitbox.position.x, 2) + Math.pow(this.hitbox.position.y - a.collisionsHitbox.position.y, 2));
    //if (Math.pow(this.hitbox.position.x - a.collisionsHitbox.position.x, 2) + Math.pow(this.hitbox.position.y - a.collisionsHitbox.position.y, 2) <= activationDistance && this.fire == a.fire){
    if (this.hitbox.position.x >= a.renderHitbox.position.x && this.hitbox.position.x + this.hitbox.size.x <= a.renderHitbox.position.x + a.renderHitbox.size.x && this.hitbox.position.y >= a.renderHitbox.position.y && this.hitbox.position.y + this.hitbox.size.y <= a.renderHitbox.position.y + a.renderHitbox.size.y +1 && this.fire == a.fire){
-     println("OPEN");
+     //println("OPEN");
      a.opened = true;
    } else if (this.fire == a.fire){
-     println("CLOSE");
+     //println("CLOSE");
      a.opened = false;
    }
  }

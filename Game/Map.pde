@@ -75,12 +75,12 @@ public class Map{
         }
         
       }
-      println(Arrays.toString(slidingTileTemp));
-      println(Arrays.toString(buttons));
+      //println(Arrays.toString(slidingTileTemp));
+      //println(Arrays.toString(buttons));
       for (int i = 0; i < 10; i++){
         if (buttons[i] != null){
-          System.out.println("HEllo");
-          println(Arrays.toString(slidingTileTemp));
+          //System.out.println("HEllo");
+          //println(Arrays.toString(slidingTileTemp));
           buttons[i].setTileLink(slidingTileTemp[i]);
         }
       }
@@ -130,12 +130,12 @@ public class Map{
     for (int i = 0; i < buttons.length; i++){
       if (buttons[i] == null || buttons[i].tileLink == null) continue;
       fireboy.hitbox.collide(buttons[i].tileLink.hitbox);
-      println(Arrays.toString(fireboy.hitbox.collisions));
+      //println(Arrays.toString(fireboy.hitbox.collisions));
       if (fireboy.hitbox.collisions[Bottom]) buttons[i].activate();
       else buttons[i].deactivate();
       
       watergirl.hitbox.collide(buttons[i].tileLink.hitbox);
-      println(Arrays.toString(watergirl.hitbox.collisions));
+      //println(Arrays.toString(watergirl.hitbox.collisions));
       if (watergirl.hitbox.collisions[Bottom]) buttons[i].activate();
       else buttons[i].deactivate();
     }
