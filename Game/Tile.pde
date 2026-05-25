@@ -1,11 +1,15 @@
 public abstract class Tile{
-  public Hitbox hitbox;
+  public Hitbox collisionsHitbox;
+  public Hitbox renderHitbox;
   public PImage[] animation;
   public int animationState;
+  public boolean renderEveryFrame;
   public static final int size = 16;
   
-  public Tile(Hitbox hitbox, PImage[] a){
-    this.hitbox = hitbox;
+  public Tile(Hitbox collisionsHitbox, Hitbox renderHitbox, PImage[] a, boolean r){
+    this.collisionsHitbox = collisionsHitbox;
+    this.renderHitbox = renderHitbox;
+    renderEveryFrame = r;
     animation = a;
     animationState = 0;
   }
@@ -13,15 +17,16 @@ public abstract class Tile{
   public void render(){
     if (animation == null) {
       fill(255);
-      rect(hitbox.position.x, hitbox.position.y, hitbox.size.x, hitbox.size.y);
+      rect(renderHitbox.position.x, renderHitbox.position.y, renderHitbox.size.x, renderHitbox.size.y);
       return;
     }
-    image(animation[animationState], hitbox.position.x, hitbox.position.y, hitbox.size.x, hitbox.size.y);
+
+    image(animation[animationState], renderHitbox.position.x, renderHitbox.position.y, renderHitbox.size.x, renderHitbox.size.y);
     animationState++;
     animationState%=animation.length;
   }
   
   @Override public String toString(){
-    return (this.hitbox.position.y/(size*scale)) + " " + (this.hitbox.position.x/(size*scale));
+    return (this.renderHitbox.position.y/(size*scale)) + " " + (this.renderHitbox.position.x/(size*scale));
   }
 }

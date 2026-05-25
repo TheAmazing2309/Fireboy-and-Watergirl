@@ -18,3 +18,18 @@ I added a gameState variable and veriables for differnt game states which can ch
 
 ### 2026-05-19 - Worked on buttons
 I made a button class which will be used to change screens later on and do fuctions like restart. I got the buttons to display and to highlight when they are hovered over. There is an ArrayList of buttons that the game will constantly loop thought to check if it was clicked and if it should be high lighted. I addded to the door class so that when a player overlaps it hit box with the door then the door will update as open. I also added colors to the buttons and players. 2 hour.
+
+### 2026-05-20 - images
+I started to look for images/sprites to use in our game. 1 hour.
+
+### 2026-05-21 - images and button
+I continued to look for images/sprites to use in our game and moved the button to where the play is. 1 hour.
+
+### 2026-05-22 - buttons and functions
+I added all the buttons and made the functions for all of them, but the reset fuction is not working and i dont know why. 2 hours.
+
+### 2026-05-23 - timer bugs and reseting
+I fixed the timer not restarting when retrying and I fixed the timer not pausing when the game is paused. I also fixed the players not respawing in the start locatiosn instread of there current locations when the game restarts. Also updated UML. 3 hours.
+
+### 2026-05-24 - levels screen and buttons, UML
+I made a levels screen that updates and changes colors based on the levels compleated and continues on updating the UML. I also added a half win screen if the gems aren't collected. 3 hours.

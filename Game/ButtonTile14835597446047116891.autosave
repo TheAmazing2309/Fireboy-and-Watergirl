@@ -3,21 +3,29 @@ public class ButtonTile extends Tile{
   public boolean openThisFrame;
   public int c;
   public color[] colors = {#B3B004, #2BB222, #A922B2, #0441B3, #B24922, #BFBFBF};
- 
+  
   public ButtonTile (Hitbox h1, Hitbox h2, PImage[] a, SlidingTile tileLink, boolean r, int c){
     super(h1, h2, a, r);
     this.tileLink = tileLink;
     openThisFrame = false;
-    this.c=c;
+    this.c =c;
   }
   
   public void activate(){
     openThisFrame = false;
+    animationState++;
+    animationState = Math.min(animationState, 4);
+    this.collisionsHitbox.position.y -= 4;
+    this.collisionsHitbox.size.y -= 4;
     tileLink.otkroy();
   }
   public void deactivate(){
     try{
     tileLink.zakroy();
+    animationState--;
+    animationState = Math.max(animationState, 0);
+    this.collisionsHitbox.position.y += 4;
+    this.collisionsHitbox.size.y += 4;
     }catch (NullPointerException e){
       e.printStackTrace();
     }
@@ -28,9 +36,10 @@ public class ButtonTile extends Tile{
   }
   
   @Override public void render(){
-   image(loadImage("sprites/BackgroundTile.png"), this.renderHitbox.position.x, this.renderHitbox.position.y, map.tileSize, map.tileSize);
+   // println("SIXTLYLL" + this.animation[0]);
+   // image(this.animation[0], this.renderHitbox.position.x, this.renderHitbox.position.y + 4 * animationState);
    fill(colors[c]);
-   rect(collisionsHitbox.position.x,collisionsHitbox.position.y,collisionsHitbox.size.x, collisionsHitbox.size.y);
+   rect(renderHitbox.position.x,renderHitbox.position.y,renderHitbox.size.x, renderHitbox.size.y);
   }
   
 }

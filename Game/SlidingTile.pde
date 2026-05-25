@@ -1,30 +1,32 @@
 public class SlidingTile extends Tile{
   
   public int direction;
-  
-  private int openSpeed = 5;
+  private int openSpeed = 10;
   private int positionAt = 0;
+  public int c;
+  public color[] colors = {#B3B004, #2BB222, #A922B2, #0441B3, #B24922, #BFBFBF};
   
   
-  public SlidingTile(Hitbox hitbox, PImage[] a, int direction){
-    super(hitbox, a);
+  public SlidingTile(Hitbox h1, Hitbox h2, PImage[] a, int direction, boolean r, int c){
+    super(h1, h2, a, r);
     this.direction = direction;
+    this.c=c;
   }
   
   public boolean otkroy(){
     if (positionAt >= openSpeed) return true;
     positionAt++;
     if (direction == Top){
-      hitbox.size.y -= (Tile.size * scale) / openSpeed;
+      collisionsHitbox.size.y -= (Tile.size * scale) / openSpeed;
     }
     if (direction == Bottom){
-      hitbox.size.y -= (Tile.size * scale) / openSpeed;
+      collisionsHitbox.size.y -= (Tile.size * scale) / openSpeed;
     }
     if (direction == Left){
-      hitbox.size.x -= (Tile.size * scale) / openSpeed;
+      collisionsHitbox.size.x -= (Tile.size * scale) / openSpeed;
     }
     if (direction == Right){
-      hitbox.size.x -= (Tile.size * scale) / openSpeed;
+      collisionsHitbox.size.x -= (Tile.size * scale) / openSpeed;
     }
     return false;
   }
@@ -33,24 +35,27 @@ public class SlidingTile extends Tile{
     if (positionAt <= 0) return true;
     positionAt--;
     if (direction == Top){
-      hitbox.size.y += (Tile.size * scale) / openSpeed;
+      collisionsHitbox.size.y += (Tile.size * scale) / openSpeed;
     }
     if (direction == Bottom){
-      hitbox.size.y += (Tile.size * scale) / openSpeed;
+      collisionsHitbox.size.y += (Tile.size * scale) / openSpeed;
     }
     if (direction == Left){
-      hitbox.size.x += (Tile.size * scale) / openSpeed;
+      collisionsHitbox.size.x += (Tile.size * scale) / openSpeed;
     }
     if (direction == Right){
-      hitbox.size.x += (Tile.size * scale) / openSpeed;
+      collisionsHitbox.size.x += (Tile.size * scale) / openSpeed;
     }
     return false;
   }
   
   @Override public void render(){
-    fill(255);
-    println("THIS SHOULD NOT BE IN THE FINAL PRODUCT!!");
-    fill(0);
-    rect(hitbox.position.x,hitbox.position.y,hitbox.size.x, hitbox.size.y);
+    //fill(255);
+    //println("THIS SHOULD NOT BE IN THE FINAL PRODUCT!!");
+    image(loadImage("sprites/BackgroundTile.png"), this.renderHitbox.position.x, this.renderHitbox.position.y, map.tileSize, map.tileSize);
+    fill(#CCCCCC);
+    rect(collisionsHitbox.position.x, collisionsHitbox.position.y, collisionsHitbox.size.x, collisionsHitbox.size.y);
+    fill(colors[c]);
+    rect(collisionsHitbox.position.x+3, collisionsHitbox.position.y+3, collisionsHitbox.size.x-6, collisionsHitbox.size.y-6);
   }
 }

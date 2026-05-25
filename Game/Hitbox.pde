@@ -11,8 +11,13 @@ public class Hitbox{
     collisions = new boolean[]{false, false, false, false};
   }
   
+  public Hitbox copy(){
+    return new Hitbox(position, size, collisionsOn);
+  }
+  
   public void collide(Hitbox other){ //<>//
     //System.out.println(this.collisionsOn + " " + other.collisionsOn);
+    if (other == null) return;
     
     this.collisions = new boolean[]{false, false, false, false};
     other.collisions = new boolean[]{false, false, false, false};
