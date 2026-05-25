@@ -9,7 +9,8 @@ public class Map{
   public ArrayList<GemTile> gems;
   public int waterGemsCollected = 0;
   public int fireGemsCollected = 0;
-  
+  public PVector waterStartPos;
+  public PVector fireStartPos;
 
   public Map(int level){
     String[] lines = loadStrings("levels/"+level+".txt");
@@ -27,13 +28,13 @@ public class Map{
       //System.out.println(line + " " + line.length());
       for (int j = 0; j < levelWidth; j++){ // 0-9 button codes, )-( lever codes
         char el = line.charAt(j);
-        if (el == ' ') tileMap[i][j] = new WallTile(new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), false), new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), false), new PImage[]{loadImage("sprites/BackgroundTile.png")}, true);
-        else if (el == '#') tileMap[i][j] = new WallTile(new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), true), new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), false), new PImage[]{loadImage("sprites/PlatformTile.png")}, false);
+        if (el == ' '||el=='.'||el==',') tileMap[i][j] = new WallTile(new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), false), new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), false), new PImage[]{loadImage("sprites/BackgroundTile.png")}, true);
+        if (el == '#') tileMap[i][j] = new WallTile(new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), true), new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), false), new PImage[]{loadImage("sprites/PlatformTile.png")}, false);
         else if (el >= '0' && el <= '9'){ 
           tileMap[i][j] = new ButtonTile(new Hitbox(new PVector(j * tileSize, i * tileSize + tileSize * 0.8), new PVector(tileSize, tileSize * 0.2), true), new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), true), null, null, true, el-'0');
           buttons[el-'0'] = (ButtonTile)tileMap[i][j];
         }
-        else if ((el >= 'a' && el <= 'j') || (el >= 'A' && el <= 'J')){ 
+        else if ((el >= 'a' && el <= 'j') || (el >= 'A' && el <= 'J') || (el >= 'k' && el <= 't') || (el >= 'K' && el <= 'T')){ 
           Tile temp;
           if (el >= 'a' && el <= 'j') {//Left
           el -= 'a';
@@ -65,10 +66,12 @@ public class Map{
           tileMap[i][j] = new LiquidTile(new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), true), new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), false), null, (el=='z'||el=='x'), (el=='z'||el=='y'), true);
         }
         else if (el == '>' || el == '<'){
-          tileMap[i][j] = new GemTile(new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), false), new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), false), ((el=='<')?null:new PImage[]{loadImage("sprites/WaterGem.png")}), true, el=='<');
+          tileMap[i][j] = new GemTile(new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), false), new Hitbox(new PVector(j * tileSize, i * tileSize), new PVector(tileSize, tileSize), false), ((el=='<')?new PImage[]{loadImage("sprites/FireGem.png")}:new PImage[]{loadImage("sprites/WaterGem.png")}), true, el=='<');
           gems.add((GemTile)tileMap[i][j]);
       }
-        else throw new IllegalArgumentException("Illegal char in level " + level + " " + el);
+      //else throw new IllegalArgumentException("Illegal char in level " + level + " " + el);
+        if (el==',') fireStartPos = new PVector(j * tileSize, i * tileSize);
+        if (el=='.') waterStartPos = new PVector(j * tileSize, i * tileSize);
         }
         
       }

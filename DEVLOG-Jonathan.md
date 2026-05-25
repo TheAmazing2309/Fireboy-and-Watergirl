@@ -40,3 +40,6 @@ Worked for two hours to manually draw textures for the background bricks and for
 
 ### 2026-05-23 - Fixing button rendering, slidingTile rendering AND gems Session 2
 Working for 3 hours to fix the rendering for the sliding tiles and the buttons so that they do not take up the wholt ile, and also are color coded with the sliding tiles. Also making the liquid tiles render more nicely. Also maing the timer look nicer. Also adding gems that the correct player can collect.
+
+### 2026-05-24 - 2026-05-25 - Polishing Game, Writing Docs, Making Video
+Spent 4 hours finsihing up the game, including making some of the textures nicer, updating the fire gem texture, making designs for 5 different levels, writing docs on how the project structure ended up looking (including descriptions of the different classes and methods). Also recorded the video for the final submission
