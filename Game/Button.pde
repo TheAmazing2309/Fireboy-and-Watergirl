@@ -48,11 +48,9 @@ public class Button{
          //implement retry
        }else if (this.equals(pauseButtonList.get(2))){
          gameState = PLAY;
-         timer.restart();
          timer.pausedTime = (System.nanoTime() - pauseStart)/1000000000.0;
          timer.time -= timer.pausedTime;
        }else if (this.equals(winButtonList.get(0))){
-         println("click");
          if(level == 1){
            L1 = true;
            B1.c = compleate;
@@ -90,68 +88,90 @@ public class Button{
          watergirl.reset();
          timer.restart();
        }else if (this.equals(loseButtonList.get(2))){
-         //implemtnt skip after levels are created
+         if(level == 1){
+           L1 = true;
+           B1.c = compleate;
+         }else if(level == 2){
+           L2 = true;
+           B2.c = compleate;
+         }else if(level == 3){
+           L3 = true;
+           B3.c = compleate;
+         }else if(level == 4){
+           L4 = true;
+           B4.c = compleate;
+         }else if(level == 5){
+           L5 = true;
+           B5.c = compleate;
+         }else if(level == 6){
+           L6 = true;
+           B6.c = compleate;
+         }else if(level == 7){
+           L7 = true;
+           B7.c = compleate;
+         }
+         gameState = LEVELS;
        }else if (this.equals(levelList.get(0))){
          level = 1;
          map = new Map(level); //<>// //<>// //<>// //<>//
          windowResize((int)(scale*map.tileMap[0].length*Tile.size), (int)(scale*map.tileMap.length*Tile.size));
+         watergirl = new Player(false, new Hitbox(map.waterStartPos, new PVector(10,10), true), waterAnimation);
+         fireboy = new Player(true, new Hitbox(map.fireStartPos, new PVector(10,10), true), fireAnimation);
          map.render(true);
-         fireboy.reset();
-         watergirl.reset();
          timer.restart();
          gameState = PLAY;
        }else if (this.equals(levelList.get(1)) && L1){
          level = 2;
          map = new Map(level); //<>// //<>// //<>// //<>//
          windowResize((int)(scale*map.tileMap[0].length*Tile.size), (int)(scale*map.tileMap.length*Tile.size));
+         watergirl = new Player(false, new Hitbox(map.waterStartPos, new PVector(10,10), true), waterAnimation);
+         fireboy = new Player(true, new Hitbox(map.fireStartPos, new PVector(10,10), true), fireAnimation);
          map.render(true);
-         fireboy.reset();
-         watergirl.reset();
          timer.restart();
          gameState = PLAY;
        }else if (this.equals(levelList.get(2)) && L2){
          level = 3;
          map = new Map(level); //<>// //<>// //<>// //<>//
          windowResize((int)(scale*map.tileMap[0].length*Tile.size), (int)(scale*map.tileMap.length*Tile.size));
+         watergirl = new Player(false, new Hitbox(map.waterStartPos, new PVector(10,10), true), waterAnimation);
+         fireboy = new Player(true, new Hitbox(map.fireStartPos, new PVector(10,10), true), fireAnimation);
          map.render(true);
-         fireboy.reset();
-         watergirl.reset();
          timer.restart();
          gameState = PLAY;
        }else if (this.equals(levelList.get(3)) && L3){
          level = 4;
          map = new Map(level); //<>// //<>// //<>// //<>//
          windowResize((int)(scale*map.tileMap[0].length*Tile.size), (int)(scale*map.tileMap.length*Tile.size));
+         watergirl = new Player(false, new Hitbox(map.waterStartPos, new PVector(10,10), true), waterAnimation);
+         fireboy = new Player(true, new Hitbox(map.fireStartPos, new PVector(10,10), true), fireAnimation);
          map.render(true);
-         fireboy.reset();
-         watergirl.reset();
          timer.restart();
          gameState = PLAY;
        }else if (this.equals(levelList.get(4)) && L4){
          level = 5;
          map = new Map(level); //<>// //<>// //<>// //<>//
          windowResize((int)(scale*map.tileMap[0].length*Tile.size), (int)(scale*map.tileMap.length*Tile.size));
+         watergirl = new Player(false, new Hitbox(map.waterStartPos, new PVector(10,10), true), waterAnimation);
+         fireboy = new Player(true, new Hitbox(map.fireStartPos, new PVector(10,10), true), fireAnimation);
          map.render(true);
-         fireboy.reset();
-         watergirl.reset();
          timer.restart();
          gameState = PLAY;
        }else if (this.equals(levelList.get(5)) && L5){
          level = 6;
          map = new Map(level); //<>// //<>// //<>// //<>//
          windowResize((int)(scale*map.tileMap[0].length*Tile.size), (int)(scale*map.tileMap.length*Tile.size));
+         watergirl = new Player(false, new Hitbox(map.waterStartPos, new PVector(10,10), true), waterAnimation);
+         fireboy = new Player(true, new Hitbox(map.fireStartPos, new PVector(10,10), true), fireAnimation);
          map.render(true);
-         fireboy.reset();
-         watergirl.reset();
          timer.restart();
          gameState = PLAY;
        }else if (this.equals(levelList.get(6)) && L6){
          level = 7;
          map = new Map(level); //<>// //<>// //<>// //<>//
          windowResize((int)(scale*map.tileMap[0].length*Tile.size), (int)(scale*map.tileMap.length*Tile.size));
+         watergirl = new Player(false, new Hitbox(map.waterStartPos, new PVector(10,10), true), waterAnimation);
+         fireboy = new Player(true, new Hitbox(map.fireStartPos, new PVector(10,10), true), fireAnimation);
          map.render(true);
-         fireboy.reset();
-         watergirl.reset();
          timer.restart();
          gameState = PLAY;
        }

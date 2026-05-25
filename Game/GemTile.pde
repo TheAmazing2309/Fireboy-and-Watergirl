@@ -12,8 +12,8 @@ public class GemTile extends Tile{
   
   public void detectCollision(Player p){
     if (collected) return;
-    println(Math.pow((this.collisionsHitbox.position.x - p.hitbox.position.x), 2) + Math.pow((this.collisionsHitbox.position.y - p.hitbox.position.y), 2));
-    println(p.fire + " " + fire);
+    //println(Math.pow((this.collisionsHitbox.position.x - p.hitbox.position.x), 2) + Math.pow((this.collisionsHitbox.position.y - p.hitbox.position.y), 2));
+    //println(p.fire + " " + fire);
     collected = (p.fire==fire) && (Math.pow((this.collisionsHitbox.position.x - p.hitbox.position.x), 2) + Math.pow((this.collisionsHitbox.position.y - p.hitbox.position.y), 2) <= activationDistance);
     if (collected){
       if (fire) map.fireGemsCollected++;
