@@ -28,21 +28,12 @@ public class Player{
     prevX = hitbox.position.x;
     prevY = hitbox.position.y;
  }
-<<<<<<< HEAD
-  //<>// //<>// //<>// //<>//
- public void applyInputs(){ //<>// //<>//
-     prevX = hitbox.position.x;
-   prevY = hitbox.position.y; //<>// //<>// //<>// //<>//
-   if (!fire){ //<>// //<>//
-     if (inputs[0] && canJump && velocity.y == 0){
-=======
   //<>// //<>//
- public void applyInputs(){ //<>// //<>// //<>//
-     prevX = hitbox.position.x; //<>//
+ public void applyInputs(){ //<>// //<>// //<>// //<>// //<>//
+     prevX = hitbox.position.x; //<>// //<>// //<>//
    prevY = hitbox.position.y; //<>// //<>//
-   if (!fire){ //<>// //<>// //<>//
-     if (inputs[0] && canJump && velocity.y == 0){ //<>//
->>>>>>> main
+   if (!fire){ //<>// //<>// //<>// //<>// //<>//
+     if (inputs[0] && canJump && velocity.y == 0){ //<>// //<>// //<>//
      this.apply(jump);
      canJump = false;
      }
@@ -137,7 +128,14 @@ public class Player{
    checkDoor(map.doors[0]);
    checkDoor(map.doors[1]);
 
-   if (map.doors[0].opened && map.doors[1].opened) gameState = WIN;
+   if (map.doors[0].opened && map.doors[1].opened){
+     if(map.waterGemsCollected + map.fireGemsCollected == map.gems.size()){
+       gameState = WIN;
+     }else {
+       gameState = HALFWIN;
+     }
+     
+   }
    for (GemTile gem : map.gems) gem.detectCollision(this);
 
  }
