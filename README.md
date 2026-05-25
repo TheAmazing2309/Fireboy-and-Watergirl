@@ -12,7 +12,7 @@ group members
 - Jonathan Tetry
 
 ## Overview
-  This is a recreation of the platformer Fireboy and Watergirl. The primary goal of the game is to reach their respective doors without dying and the secondary goal is to collect all of the gems with the respective players. If either player touches a liquid that is not their respective color then both players have lost the game.
+  This is a recreation of the platformer Fireboy and Watergirl. The primary goal of the game is to reach their respective doors without dying and the secondary goal is to collect all of the gems with the respective players.The players must work together to solve puzzles using sliding doors and parkour through the platforms. If either player touches a liquid that is not their respective color then both players have lost the game.
 
 ## Instructions
 
