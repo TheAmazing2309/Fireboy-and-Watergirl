@@ -6,10 +6,10 @@
 
 period 5
 
-groupmembers 
+group members 
 
--Charles Wu
--Jonathan Tetry
+- Charles Wu
+- Jonathan Tetry
 
 ## Overview
 ## Instructions
