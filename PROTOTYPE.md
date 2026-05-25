@@ -1,11 +1,13 @@
 # Final Project Prototype
 
-## Group Members:
-
-Jonathan Tetry
-Charles Wu
+## Tetris Group:
 
 Period 5
+
+Group Members
+
+- Jonathan Tetry
+- Charles Wu
 
 # Intentions:
 
