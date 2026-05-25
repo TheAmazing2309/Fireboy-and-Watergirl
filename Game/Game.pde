@@ -70,10 +70,10 @@ void setup(){
   levelList.add(B1);
   levelList.add(B2);
   levelList.add(B3);
-  levelList.add(B4);
-  levelList.add(B5);
-  levelList.add(B6);
-  levelList.add(B7);
+//  levelList.add(B4);
+ // levelList.add(B5);
+  //levelList.add(B6);
+  //levelList.add(B7);
 }
 
 void draw(){
@@ -144,10 +144,10 @@ void draw(){
     text("1",3 * width/100,10 * height/100);
     text("2",6.5 * width/100,10 * height/100);
     text("3",10 * width/100,10 * height/100);
-    text("4",13.5 * width/100,10 * height/100);
-    text("5",17 * width/100,10 * height/100);
-    text("6",20.5 * width/100,10 * height/100);
-    text("7",24 * width/100,10 * height/100);
+ //   text("4",13.5 * width/100,10 * height/100);
+  //  text("5",17 * width/100,10 * height/100);
+   // text("6",20.5 * width/100,10 * height/100);
+    //text("7",24 * width/100,10 * height/100);
     }else if (gameState == HALFWIN){
     image(loadImage("sprites/winScreen2.png"),width/10, height/10,width/1.2,height/1.2);
     for (int i = 0; i < winButtonList.size(); i++){

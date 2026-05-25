@@ -17,4 +17,4 @@ group members
 ## Instructions
 
 W, A, and D are the up, left, and right movemnet keybinds for watergirl and the arrow keys have their respective direcions as the beybinds for fireboy. When you compleate a level it will bring you to a levels screen where you can go to the next level by clicking the next non-green level or by clicking a green level you can replay a level you already compleated.
-ESC will pause the game and L will bring you to the levels menu.
+ESC will pause the game and L will cycle through the different gameStates. In order to access another level, you must first either beat level one, or lose on purpose and click the SKIP button in the menu. This will pull up the levels menu which you can use to navigate to the other levels.
