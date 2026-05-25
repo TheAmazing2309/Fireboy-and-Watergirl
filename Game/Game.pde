@@ -31,7 +31,7 @@ public ArrayList<Button> titleButtonList= new ArrayList<Button>();
 public ArrayList<Button> pauseButtonList= new ArrayList<Button>();
 public ArrayList<Button> winButtonList= new ArrayList<Button>();
 public ArrayList<Button> loseButtonList= new ArrayList<Button>();
-public ArrayList<DoorTile> doorList= new ArrayList<DoorTile>(); //<>// //<>//
+public ArrayList<DoorTile> doorList= new ArrayList<DoorTile>(); //<>// //<>// //<>//
 Player watergirl, fireboy; //<>//
 PImage[] waterAnimation, fireAnimation;
 boolean [] inputs = {false,false,false,false,false,false};
@@ -48,8 +48,8 @@ void setup(){
   map = new Map(level); //<>// //<>// //<>// //<>//
   windowResize((int)(scale*map.tileMap[0].length*Tile.size), (int)(scale*map.tileMap.length*Tile.size));
   map.render(true);
-  watergirl = new Player(false, new Hitbox(new PVector(40,100), new PVector(10,10), true), waterAnimation);
-  fireboy = new Player(true, new Hitbox(new PVector(80,100), new PVector(10,10), true), fireAnimation);
+  watergirl = new Player(false, new Hitbox(map.waterStartPos, new PVector(10,10), true), waterAnimation);
+  fireboy = new Player(true, new Hitbox(map.fireStartPos, new PVector(10,10), true), fireAnimation);
   //PLAY
   titleButtonList.add(new Button(width/2,56 * height/100,width/10,height/30,color(#00FF00), false));
   //END
