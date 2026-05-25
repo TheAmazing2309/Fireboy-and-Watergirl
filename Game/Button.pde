@@ -52,6 +52,7 @@ public class Button{
          timer.pausedTime = (System.nanoTime() - pauseStart)/1000000000.0;
          timer.time -= timer.pausedTime;
        }else if (this.equals(winButtonList.get(0))){
+         println("click");
          if(level == 1){
            L1 = true;
            B1.c = compleate;

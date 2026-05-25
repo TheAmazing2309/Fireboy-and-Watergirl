@@ -10,6 +10,7 @@ public final int PAUSE = 2;
 public final int WIN = 3;
 public final int LOSE = 4;
 public final int LEVELS = 5;
+public final int HALFWIN = 6;
 public final float slidingTileThickness = 0.4;
 public boolean renderedMap = false;
 public int gameState = 0;
@@ -30,8 +31,8 @@ public ArrayList<Button> titleButtonList= new ArrayList<Button>();
 public ArrayList<Button> pauseButtonList= new ArrayList<Button>();
 public ArrayList<Button> winButtonList= new ArrayList<Button>();
 public ArrayList<Button> loseButtonList= new ArrayList<Button>();
-public ArrayList<DoorTile> doorList= new ArrayList<DoorTile>();
-Player watergirl, fireboy; //<>// //<>//
+public ArrayList<DoorTile> doorList= new ArrayList<DoorTile>(); //<>//
+Player watergirl, fireboy; //<>//
 PImage[] waterAnimation, fireAnimation;
 boolean [] inputs = {false,false,false,false,false,false};
 Timer timer = new Timer();
@@ -147,6 +148,11 @@ void draw(){
     text("5",17 * width/100,10 * height/100);
     text("6",20.5 * width/100,10 * height/100);
     text("7",24 * width/100,10 * height/100);
+    }else if (gameState == HALFWIN){
+    image(loadImage("sprites/winScreen2.png"),width/10, height/10,width/1.2,height/1.2);
+    for (int i = 0; i < winButtonList.size(); i++){
+        winButtonList.get(i).render();
+      }
     }
 }
 
@@ -186,7 +192,7 @@ void keyPressed(){
   }  
   if (key == 'l'){
   gameState++;
-  gameState %= 6;
+  gameState %= 7;
   }
   if(key == ESC && gameState == PLAY){
     key = 0;
@@ -232,7 +238,7 @@ void mouseClicked(){
       for (int i = 0; i < pauseButtonList.size(); i++){
       pauseButtonList.get(i).clicked();
       }
-    }else if (gameState == WIN){
+    }else if (gameState == WIN || gameState == HALFWIN){
       for (int i = 0; i < winButtonList.size(); i++){
       winButtonList.get(i).clicked();
       }
