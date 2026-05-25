@@ -1,10 +1,8 @@
 public class SlidingTile extends Tile{
   
   public int direction;
-  
   private int openSpeed = 10;
   private int positionAt = 0;
-  
   public int c;
   public color[] colors = {#B3B004, #2BB222, #A922B2, #0441B3, #B24922, #BFBFBF};
   

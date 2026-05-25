@@ -30,3 +30,6 @@ I added all the buttons and made the functions for all of them, but the reset fu
 
 ### 2026-05-23 - timer bugs and reseting
 I fixed the timer not restarting when retrying and I fixed the timer not pausing when the game is paused. I also fixed the players not respawing in the start locatiosn instread of there current locations when the game restarts. Also updated UML. 3 hours.
+
+### 2026-05-24 - levels screen and buttons, UML
+I made a levels screen that updates and changes colors based on the levels compleated and continues on updating the UML. I also added a half win screen if the gems aren't collected. 3 hours.
